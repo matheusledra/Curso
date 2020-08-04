@@ -37,7 +37,7 @@ public class CalculadoraScanner {
 			System.out.println("Segundo número:");
 			double num2 = num.nextDouble();
 			
-			double resultado = num1 + num2;
+			double resultado = num1 - num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
@@ -49,7 +49,7 @@ public class CalculadoraScanner {
 			System.out.println("Segundo número:");
 			double num2 = num.nextDouble();
 			
-			double resultado = num1 + num2;
+			double resultado = num1 * num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
@@ -61,7 +61,7 @@ public class CalculadoraScanner {
 			System.out.println("Segundo número:");
 			double num2 = num.nextDouble();
 			
-			double resultado = num1 + num2;
+			double resultado = num1 / num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
