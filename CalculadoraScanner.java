@@ -21,11 +21,11 @@ public class CalculadoraScanner {
 			Scanner num = new Scanner(System.in);
 			
 			System.out.println("Primeiro número:");
-			int num1 = num.nextInt();
+			double num1 = num.nextDouble();
 			System.out.println("Segundo número:");
-			int num2 = num.nextInt();
+			double num2 = num.nextDouble();
 			
-			int resultado = num1 + num2;
+			double resultado = num1 + num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
@@ -33,11 +33,11 @@ public class CalculadoraScanner {
 			Scanner num = new Scanner(System.in);
 			
 			System.out.println("Primeiro número:");
-			int num1 = num.nextInt();
+			double num1 = num.nextDouble();
 			System.out.println("Segundo número:");
-			int num2 = num.nextInt();
+			double num2 = num.nextDouble();
 			
-			int resultado = num1 - num2;
+			double resultado = num1 + num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
@@ -45,11 +45,11 @@ public class CalculadoraScanner {
 			Scanner num = new Scanner(System.in);
 			
 			System.out.println("Primeiro número:");
-			int num1 = num.nextInt();
+			double num1 = num.nextDouble();
 			System.out.println("Segundo número:");
-			int num2 = num.nextInt();
+			double num2 = num.nextDouble();
 			
-			int resultado = num1 * num2;
+			double resultado = num1 + num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
@@ -57,11 +57,11 @@ public class CalculadoraScanner {
 			Scanner num = new Scanner(System.in);
 			
 			System.out.println("Primeiro número:");
-			int num1 = num.nextInt();
+			double num1 = num.nextDouble();
 			System.out.println("Segundo número:");
-			int num2 = num.nextInt();
+			double num2 = num.nextDouble();
 			
-			int resultado = num1 / num2;
+			double resultado = num1 + num2;
 			
 			System.out.println("O resultado é: " + resultado);
 		}
