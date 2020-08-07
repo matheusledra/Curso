@@ -15,7 +15,7 @@ public class MediaValores {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Insira seus valores para média:");
+		System.out.println("Insira seus valores para média (Exemplo: 15 6 4 19)");
 		n1 = sc.nextDouble();
 		n2 = sc.nextDouble();
 		n3 = sc.nextDouble();
@@ -28,5 +28,4 @@ public class MediaValores {
 		
 		sc.close();
 	}
-
 }
