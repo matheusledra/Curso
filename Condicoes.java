@@ -1,4 +1,4 @@
-package antigoeclipse;
+package Curso;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class Condicoes {
 		Scanner sc = new Scanner(System.in);
 		
 		sys.println("");
-		sys.println("Digite a opção desejada");
+		sys.println("Digite a opcao desejada");
 		sys.println("");
 		sys.println("1- Somar | 2- Subtrair | 3- Multiplicar | 4- Dividir");
 		sys.println("");
@@ -31,27 +31,23 @@ public class Condicoes {
 		n2 = sc.nextDouble();
 		
 		if(opcao == 1) {
-			
 			calculo = n1 + n2;
-
-			msg = "Resultado da soma -> " + calculo;
-		} else if(opcao == 2) { 
 			
+			msg = "Resultado da soma -> " + calculo;
+		} else if(opcao == 2) {
 			calculo = n1 - n2;
 			
-			msg = "Resultado da subtração -> " + calculo;
+			msg = "Resultado da subtracao -> " + calculo;
 		} else if(opcao == 3) {
-			
 			calculo = n1 * n2;
 			
-			msg = "Resultado da multiplicação -> " + calculo;
+			msg = "Resultado da multiplicacao -> " + calculo;
 		} else if(opcao == 4) {
-			
 			calculo = n1 / n2;
 			
-			msg = "Resultado da divisão -> " + calculo;
+			msg = "Resultado da divisao -> " + calculo;
 		} else {
-			msg = "->!!!<- Opção inválida! ->!!!<-";
+			msg = "->!!!<- Opcao invalida! ->!!!<-";
 		}
 		
 		sys.println("");
