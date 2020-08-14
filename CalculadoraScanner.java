@@ -12,6 +12,7 @@ public class CalculadoraScanner {
 		System.out.println("Subtração = 2");
 		System.out.println("Multiplicação = 3");
 		System.out.println("Divisão = 4");
+		System.out.println("Porcentagem = 5");
 		System.out.println("==================");
 		
 		Scanner ope = new Scanner(System.in);
@@ -65,7 +66,18 @@ public class CalculadoraScanner {
 			
 			System.out.println("O resultado é: " + resultado);
 		}
-		
+		if(operacao == 5) {
+			Scanner num = new Scanner(System.in);
+			
+			System.out.println("Primeiro número:");
+			double num1 = num.nextDouble();
+			System.out.println("Segundo número:");
+			double num2 = num.nextDouble();
+			
+			double resultado = (num1*num2)/100;
+			
+			System.out.println("O resultado é: " + resultado);
+		}
 	}
 	
 }
