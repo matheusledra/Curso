@@ -29,8 +29,8 @@ public class ExercicioConhecimentos {
 						System.out.println("");
 						System.out.println("Escolha uma operacao matematica:");
 						System.out.println("");
-						System.out.println("1 - Somar | 2 - Subtrair");
-						System.out.println("3- Multiplicar | 4 - Dividir");
+						System.out.println("1 - Somar | 2 - Subtrair | 3 - Multiplicar");
+						System.out.println("4 - Dividir | 5 - Porcentagem");
 						System.out.println("");
 						operacao = sc.nextInt();
 						
@@ -199,10 +199,10 @@ public class ExercicioConhecimentos {
 								
 								if(idade >= 18) { // se...
 									System.out.println("");
-									System.out.println("A pessoa é maior de idade!");
+									System.out.println("A pessoa e maior de idade!");
 								} else { // se mao...
 									System.out.println("");
-									System.out.println("A pessoa é menor de idade!");
+									System.out.println("A pessoa e menor de idade!");
 								}
 								invalidOption = false;
 							} else if(opcoes.equalsIgnoreCase("A")) { // se nao, se...
@@ -215,10 +215,10 @@ public class ExercicioConhecimentos {
 								
 								if(idade >= 18) { // se...
 									System.out.println("");
-									System.out.println("A pessoa é maior de idade!");
+									System.out.println("A pessoa e maior de idade!");
 								} else { // se nao...
 									System.out.println("");
-									System.out.println("A pessoa é menor de idade!");
+									System.out.println("A pessoa e menor de idade!");
 								}
 								invalidOption = false;
 							} else { // se nao...
@@ -288,19 +288,19 @@ public class ExercicioConhecimentos {
 								System.out.println("Voltando para verificar mais uma idade...");
 								System.out.println("");
 								menu2 = true;
-							} else if(opcoes.equalsIgnoreCase("Principal")) { // se não, se...
+							} else if(opcoes.equalsIgnoreCase("Principal")) { // se nao, se...
 								System.out.println("");
 								System.out.println("Voltando ao menu principal...");
 								System.out.println("");
 								menu2 = false;
 								menu1 = true;
-							} else if(opcoes.equalsIgnoreCase("Encerrar")) { // se não, se...
+							} else if(opcoes.equalsIgnoreCase("Encerrar")) { // se nao, se...
 								System.out.println("");
 								System.out.println("Encerrando...");
 								menu1 = false;
 								menu2 = false;
 								opcoesmenu = false;
-							} else { // se não...
+							} else { // se nao...
 								System.out.println("");
 								System.out.println("Opcao invalida... Tente novamente!");
 								menu1 = false; 
@@ -334,7 +334,7 @@ public class ExercicioConhecimentos {
 						
 						opcaoConversa = sc.next();
 						
-						conversa = (opcaoConversa.equalsIgnoreCase("Ok")) ? "Até mais" : "Bye";
+						conversa = (opcaoConversa.equalsIgnoreCase("Ok")) ? "Ate mais" : "Bye";
 						
 						System.out.println(conversa);
 						
@@ -352,19 +352,19 @@ public class ExercicioConhecimentos {
 								System.out.println("Reiniciando a conversa...");
 								System.out.println("");
 								menu2 = true;
-							} else if(opcoes.equalsIgnoreCase("Principal")) { // se não, se...
+							} else if(opcoes.equalsIgnoreCase("Principal")) { // se nao, se...
 								System.out.println("");
 								System.out.println("Voltando ao menu principal...");
 								System.out.println("");
 								menu2 = false;
 								menu1 = true;
-							} else if(opcoes.equalsIgnoreCase("Encerrar")) { // se não, se...
+							} else if(opcoes.equalsIgnoreCase("Encerrar")) { // se nao, se...
 								System.out.println("");
 								System.out.println("Encerrando...");
 								menu1 = false;
 								menu2 = false;
 								opcoesmenu = false;
-							} else { // se não...
+							} else { // se nao...
 								System.out.println("");
 								System.out.println("Opcao invalida... Tente novamente!");
 								menu1 = false; 
