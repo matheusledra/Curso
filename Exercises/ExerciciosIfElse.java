@@ -53,8 +53,10 @@ public class ExerciciosIfElse {
 			System.out.println("Exercício não encontrado...");
 			break;
 		}
+		entradaValores.close();
 	}
 
+	// -----===[|> <!!!> <|]===---- \\
 	public static void exercicioIfElse1() {
 		Scanner entradaValores = new Scanner(System.in);
 		int num1, num2;
@@ -69,6 +71,7 @@ public class ExerciciosIfElse {
 		} else { 
 			System.out.println("O maior número é: " + num2);
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse2() {
@@ -93,6 +96,7 @@ public class ExerciciosIfElse {
 		} else {
 			System.out.println("O maior número é: " + num4);
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse3() {
@@ -109,6 +113,7 @@ public class ExerciciosIfElse {
 		} else {
 			System.out.println("Número " + num + " é ímpar");
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse4() {
@@ -131,6 +136,7 @@ public class ExerciciosIfElse {
 			System.out.println("Código " + codigoProduto);
 			System.out.println("Diversos");
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse5() {
@@ -145,6 +151,7 @@ public class ExerciciosIfElse {
 		} else {
 			System.out.println("Você não pode votar esse ano!");
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse6() {
@@ -159,6 +166,7 @@ public class ExerciciosIfElse {
 		} else {
 			System.out.println("Acesso Negado!");
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse7() {
@@ -175,6 +183,7 @@ public class ExerciciosIfElse {
 			precoTotal = macas * 0.25;
 			System.out.println("Preço a ser pago: R$" + precoTotal);
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioIfElse8() {
@@ -207,5 +216,6 @@ public class ExerciciosIfElse {
 				System.out.println(valor3 + ", " + valor1 + ", " + valor2);
 			}
 		}
+		entradaValores.close();
 	}
 }

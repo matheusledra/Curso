@@ -29,6 +29,7 @@ public class ExerciciosRamon {
 			System.out.println("Exercício não encontrado...");
 			break;
 		}
+		entradaValores.close();
 	}
 
 	public static void triangulo() {
@@ -58,6 +59,7 @@ public class ExerciciosRamon {
 		} else {
 			System.out.println("O Triângulo é Inválido!");
 		}
+		entradaValores.close();
 	}
 
 	public static void maiorMenorZero() {
@@ -74,6 +76,7 @@ public class ExerciciosRamon {
 		} else {
 			System.out.println("O número é igual a zero");
 		}
+		entradaValores.close();
 	}
 
 }

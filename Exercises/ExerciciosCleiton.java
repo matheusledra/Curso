@@ -33,6 +33,7 @@ public class ExerciciosCleiton {
 			System.out.println("Exercício não encontrado...");
 			break;
 		}
+		entradaValores.close();
 	}
 
 	public static void conhecimentosJava() {
@@ -448,6 +449,7 @@ public class ExerciciosCleiton {
 		} else {
 			System.out.println("A Nota maxima é 10");
 		}
+		entradaValores.close();
 	}
 
 	public static void notasMacas() {
@@ -472,6 +474,7 @@ public class ExerciciosCleiton {
 		} else {
 			System.out.println("A Nota maxima é 10");
 		}
+		entradaValores.close();
 	}
 
 }

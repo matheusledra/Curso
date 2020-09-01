@@ -3,8 +3,6 @@ package Curso.Exercises;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import Curso.EntradaDados;
-
 public class ExerciciosBasicos {
 	
 	public static int escolhaExercicio = 0;
@@ -49,8 +47,10 @@ public class ExerciciosBasicos {
 			System.out.println("Exercício não encontrado...");
 			break;
 		}
+		entradaValores.close();
 	}
 
+	// -----===[|> <!!!> <|]===---- \\
 	public static void idadeEmDias() {
 		Scanner entradaValores = new Scanner(System.in);
 		/*
@@ -67,8 +67,6 @@ public class ExerciciosBasicos {
 
 		int diasVividos;
 
-		entradaValores = new Scanner(System.in);
-
 		System.out.print("Digite quantos anos tem, meses e dias (3 2 15): ");
 		anos = entradaValores.nextInt();
 		meses = entradaValores.nextInt();
@@ -80,6 +78,7 @@ public class ExerciciosBasicos {
 		diasVividos = dias + anosDias + mesesDias;
 
 		System.out.println("Você viveu " + diasVividos + " dias!");
+		entradaValores.close();
 	}
 
 	public static void mediaAritimetica() {
@@ -114,6 +113,7 @@ public class ExerciciosBasicos {
 
 		mediaMedias = somaMedias / 2;
 		System.out.println("Media das medias: " + mediaMedias);
+		entradaValores.close();
 	}
 
 	public static void reajusteSaldo() {
@@ -123,8 +123,6 @@ public class ExerciciosBasicos {
 		double reajuste;
 		double saldoFinal;
 
-		entradaValores = new Scanner(System.in);
-
 		System.out.print("Digite um saldo: ");
 		saldo = entradaValores.nextDouble();
 
@@ -132,6 +130,7 @@ public class ExerciciosBasicos {
 		saldoFinal = reajuste + saldo;
 
 		System.out.println(saldoFinal);
+		entradaValores.close();
 	}
 
 	public static void totalPagoPecas() {
@@ -158,8 +157,6 @@ public class ExerciciosBasicos {
 
 		double somas;
 		double valorFinal;
-
-		entradaValores = new Scanner(System.in);
 
 		System.out.println("");
 		System.out.print("Digite a porcentagem IPI: ");
@@ -200,7 +197,11 @@ public class ExerciciosBasicos {
 
 		valorFinal = somas + valorAdicional;
 
+		System.out.println("Valor total de peças do codígo " + cod1 + " -> R$" + valorTotalPecas1);
+		System.out.println("Valor total de peças do codígo " + cod2 + " -> R$" + valorTotalPecas2);
+		System.out.println("Valor adicional ao preço -> R$" + valorAdicional);
 		System.out.println("Valor final a ser pago: R$" + valorFinal);
+		entradaValores.close();
 	}
 
 	public static void salariosMinimos() {
@@ -212,14 +213,13 @@ public class ExerciciosBasicos {
 		double salarioUsuario;
 		double salarios;
 
-		entradaValores = new Scanner(System.in);
-
 		System.out.print("Digite o salario do usuario: ");
 		salarioUsuario = entradaValores.nextDouble();
 
 		salarios = salarioUsuario / salarioMinimo;
 
 		System.out.println("Este usuario ganha " + salarios + " salarios minimos!");
+		entradaValores.close();
 	}
 
 	public static void sucessorAntecessor() {
@@ -230,8 +230,6 @@ public class ExerciciosBasicos {
 		int antecessor;
 		int sucessor;
 
-		entradaValores = new Scanner(System.in);
-
 		System.out.print("Digite um numero: ");
 		num = entradaValores.nextInt();
 
@@ -240,6 +238,7 @@ public class ExerciciosBasicos {
 
 		System.out.println("Antecessor: " + antecessor);
 		System.out.println("Sucessor: " + sucessor);
+		entradaValores.close();
 	}
 
 }

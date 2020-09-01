@@ -1,6 +1,5 @@
 package Curso.Exercises;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -8,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 public class ExerciciosSwitch {
 
 	public static int escolhaExercicio;
-	
-	public static void exerciciosSwitch() throws InterruptedException{
+
+	public static void exerciciosSwitch() throws InterruptedException {
 		Scanner entradaValores = new Scanner(System.in);
 		System.out.println("");
 		System.out.println("1 -> Frutas...");
@@ -43,15 +42,17 @@ public class ExerciciosSwitch {
 			System.out.println("Exercício não encontrado...");
 			break;
 		}
+		entradaValores.close();
 	}
-	
+
+	// -----===[|> <!!!> <|]===---- \\
 	public static void exercicioSwitch1() {
 		Scanner entradaValores = new Scanner(System.in);
 		System.out.println("Frutas disponíveis: Maçã, Kiwi e Melancia");
 		System.out.print("Digite uma fruta: ");
-		
+
 		String fruta = entradaValores.next();
-		
+
 		switch (fruta.toLowerCase()) {
 		case "maçã":
 			System.out.println("Não vendemos esta fruta aqui");
@@ -63,204 +64,178 @@ public class ExerciciosSwitch {
 			System.out.println("Aqui está, são R$3,00 o quilo");
 			break;
 		default:
-			System.out.println("Fruta não reconhecida...");
+			System.out.println("Fruta não está sendo reconhecida...");
 			break;
 		}
+		entradaValores.close();
 	}
-	
+
 	public static void exercicioSwitch2() {
 		Scanner entradaValores = new Scanner(System.in);
 		System.out.println("Bem-Vindo, qual modelo de automóvel você vai querer?");
-		System.out.println("Modelos disponíveis: Hatch, Sedan, Motocicleta e Caminhonete");
-		
-		String modelo = entradaValores.next();
-		
-		switch (modelo.toLowerCase()) {
-		case "hatch":
+		System.out.println("Informe o código de veículo desejado: ");
+		System.out.println("CH - Carros Hatch");
+		System.out.println("CS - Carros Sedan");
+		System.out.println("M - Motocicletas");
+		System.out.println("CNT - Caminhonetes");
+
+		String codigoVeiculo = entradaValores.next();
+
+		switch (codigoVeiculo.toLowerCase()) {
+		case "ch":
 			System.out.println("Compra de um Hatch efetuada com sucesso!");
 			break;
-		case "sedan":
+		case "cs":
 			System.out.println("Tem certeza que prefere este modelo? S/N");
 			String confirmacaoSedan = entradaValores.next();
-			
-			switch (confirmacaoSedan.toLowerCase()) {
-			case "s":
-				System.out.println("Compra de um Sedan efetuada com sucesso!");
-				break;
-			case "n":
-				System.out.println("Compra cancelada!");
-			default:
-				break;
-			}
+
+			String compraSedan = confirmacaoSedan.equalsIgnoreCase("S") ? "Compra de um Sedan efetuada com sucesso!"
+					: confirmacaoSedan.equalsIgnoreCase("N") ? "Compra cancelada!"
+							: "Opção inválida '" + confirmacaoSedan + "'";
+
+			System.out.println(compraSedan);
 			break;
-		case "motocicleta":
+		case "m":
 			System.out.println("Tem certeza que prefere este modelo? S/N");
 			String confirmacaoMotocicleta = entradaValores.next();
-			
-			switch (confirmacaoMotocicleta.toLowerCase()) {
-			case "s":
-				System.out.println("Compra de uma Motocicleta efetuada com sucesso!");
-				break;
-			case "n":
-				System.out.println("Compra cancelada!");
-			default:
-				break;
-			}
+
+			String compraMotocicleta = confirmacaoMotocicleta.equalsIgnoreCase("S")
+					? "Compra de um Sedan efetuada com sucesso!"
+					: confirmacaoMotocicleta.equalsIgnoreCase("N") ? "Compra cancelada!"
+							: "Opção inválida '" + confirmacaoMotocicleta + "'";
+
+			System.out.println(compraMotocicleta);
 			break;
-		case "caminhonete":
+		case "cnt":
 			System.out.println("Tem certeza que prefere este modelo? S/N");
 			String confirmacaoCaminhonete = entradaValores.next();
-			
-			switch (confirmacaoCaminhonete.toLowerCase()) {
-			case "s":
-				System.out.println("Compra de uma Caminhonete efetuada com sucesso!");
-				break;
-			case "n":
-				System.out.println("Compra cancelada!");
-			default:
-				break;
-			}
+
+			String compraCaminhonete = confirmacaoCaminhonete.equalsIgnoreCase("S")
+					? "Compra de um Sedan efetuada com sucesso!"
+					: confirmacaoCaminhonete.equalsIgnoreCase("N") ? "Compra cancelada!"
+							: "Opção inválida '" + confirmacaoCaminhonete + "'";
+
+			System.out.println(compraCaminhonete);
 			break;
 		default:
-			System.out.println("Não trabalhamos com este tipo de automóvel aqui");
+			System.out.println("Código inválido '" + codigoVeiculo + "'");
 			break;
 		}
+		entradaValores.close();
 	}
-	
+
 	public static void exercicioSwitch3() {
 		Scanner entradaValores = new Scanner(System.in);
 		System.out.println("Escolha uma operação: +, -, x, /");
 		String operacao = entradaValores.next();
-		int numero1, numero2, resultado;
-		
+		int numero1 = 0, numero2 = 0;
+		Integer resultado = null;
+
+		if (operacao.equals("+") || operacao.equals("-") || operacao.equals("x") || operacao.equals("/")) {
+			System.out.print("Digite o primeiro número: ");
+			numero1 = entradaValores.nextInt();
+			System.out.print("Digite o segundo número: ");
+			numero2 = entradaValores.nextInt();
+		} else {
+			System.out.println("Operação não reconhecida '" + operacao + "'");
+		}
 		switch (operacao) {
 		case "+":
-			System.out.print("Digite o primeiro número: ");
-			numero1 = entradaValores.nextInt();
-			System.out.print("Digite o segundo número: ");
-			numero2 = entradaValores.nextInt();
-			
 			resultado = numero1 + numero2;
-			
-			System.out.println("O resultado de " + numero1 + " + " + numero2 + " é: " + resultado);
 			break;
 		case "-":
-			System.out.print("Digite o primeiro número: ");
-			numero1 = entradaValores.nextInt();
-			System.out.print("Digite o segundo número: ");
-			numero2 = entradaValores.nextInt();
-			
 			resultado = numero1 - numero2;
-			
-			System.out.println("O resultado de " + numero1 + " - " + numero2 + " é: " + resultado);
 			break;
 		case "x":
-			System.out.print("Digite o primeiro número: ");
-			numero1 = entradaValores.nextInt();
-			System.out.print("Digite o segundo número: ");
-			numero2 = entradaValores.nextInt();
-			
 			resultado = numero1 * numero2;
-			
-			System.out.println("O resultado de " + numero1 + " x " + numero2 + " é: " + resultado);
 			break;
 		case "/":
-			System.out.print("Digite o primeiro número: ");
-			numero1 = entradaValores.nextInt();
-			System.out.print("Digite o segundo número: ");
-			numero2 = entradaValores.nextInt();
-			
 			resultado = numero1 / numero2;
-			
-			System.out.println("O resultado de " + numero1 + " / " + numero2 + " é: " + resultado);
 			break;
 		default:
-			System.out.println("Operação não reconhecida '" + operacao + "'");
 			break;
 		}
+		entradaValores.close();
+		if (resultado != null) {
+			System.out.println("O resultado de " + numero1 + " " + operacao + " " + numero2 + " é: " + resultado);
+		}
+
 	}
 
 	public static void exercicioSwitch4() {
 		Scanner entradaValores = new Scanner(System.in);
 
-		System.out.println("Escolha um produto: ");
-		System.out.println("Produtos não-perecíveis:");
-		System.out.println("Arroz, feijão, café");
-		System.out.println("Frutas:");
-		System.out.println("Maçã, banana, manga, melancia");
-		System.out.println("Bebidas:");
-		System.out.println("Energético, suco, leite, refrigerante");
-		
-		String escolhaProduto = entradaValores.next();
-		
-		switch (escolhaProduto.toLowerCase()) {
-		case "arroz":
-			System.out.println("Produto escolhido: " + escolhaProduto);
+		System.out.println("Escolha uma categoria: ");
+		System.out.println("1 - Produtos não-perecíveis");
+		System.out.println("2 - Frutas");
+		System.out.println("3 - Bebidas");
+
+		int escolhaCategoria = entradaValores.nextInt();
+
+		switch (escolhaCategoria) {
+		case 1:
+			System.out.println("Arroz, feijão, café");
 			break;
-		case "feijão":
-			System.out.println("Produto escolhido: " + escolhaProduto);
+		case 2:
+			System.out.println("Maçã, banana, manga, melancia");
 			break;
-		case "café":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "maçã":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "banana":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "manga":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "melancia":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "energético":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "suco":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "leite":
-			System.out.println("Produto escolhido: " + escolhaProduto);
-			break;
-		case "refrigerante":
-			System.out.println("Produto escolhido: " + escolhaProduto);
+		case 3:
+			System.out.println("Energético, suco, leite, refrigerante");
 			break;
 		default:
+			System.out.println("Produto não reconhecido!");
 			break;
 		}
+		entradaValores.close();
 	}
 
 	public static void exercicioSwitch5() {
 		Scanner entradaValores = new Scanner(System.in);
-		Random numeroAleatorio = new Random();
-		int numeroPrograma = ThreadLocalRandom.current().nextInt(1, 14);
-		
+		int numeroPrograma = ThreadLocalRandom.current().nextInt(1, 20);
+
+		System.out.println("---< 21 >---");
+		System.out.println("Você informa número entre 1 e 20");
+		System.out.println("O sistema irá gerar um número entre 1 e 20");
+		System.out.println("Se o resultado for:");
+		System.out.println("7 = 10 Pontos");
+		System.out.println("14 = 14 Pontos");
+		System.out.println("21 = 21 Pontos");
+		System.out.println("Entre 1 e 6 = 1 Ponto");
+		System.out.println("Entre 8 e 13 = 5 Pontos");
+		System.out.println("Entre 15 e 20 = 6 Pontos");
+		System.out.println("---< 21 >---");
+		System.out.println("");
 		System.out.print("Informe um número entre 1 e 20: ");
 		int numeroJogador = entradaValores.nextInt();
-		
-		int resultado = numeroJogador + numeroPrograma;
-		
-		switch (resultado) {
-		case 7:
-			System.out.println("Pontos: " + resultado + " pontos");
-			break;
-		case 14:
-			System.out.println("Pontos: " + resultado + " pontos");
-			break;
-		case 21:
-			System.out.println("Pontos: " + resultado + " pontos");
-			break;
-		default:
-			break;
+
+		if(numeroJogador > 20) {
+			int resultadoPontuacao = numeroJogador + numeroPrograma;
+
+			switch (resultadoPontuacao) {
+			case 7:
+				System.out.println("Pontos: " + resultadoPontuacao + " pontos");
+				break;
+			case 14:
+				System.out.println("Pontos: " + resultadoPontuacao + " pontos");
+				break;
+			case 21:
+				System.out.println("Pontos: " + resultadoPontuacao + " pontos");
+				break;
+			default:
+				break;
+			}
+			if (resultadoPontuacao >= 1 && resultadoPontuacao <= 6) {
+				System.out.println("Pontos: 1 ponto");
+			} else if (resultadoPontuacao >= 8 && resultadoPontuacao <= 13) {
+				System.out.println("Pontos: 5 pontos");
+			} else if (resultadoPontuacao >= 15 && resultadoPontuacao <= 20) {
+				System.out.println("Pontos: 6 pontos");
+			} else if (resultadoPontuacao > 21) {
+				System.out.println("Pontos: " + resultadoPontuacao + "\nVocê Perdeu ;(");
+			}
+		} else {
+			System.out.println("Você inseriu um número maior que 20!");
 		}
-		if(resultado >= 1 && resultado <= 6) {
-			System.out.println("Pontos: 1 ponto");
-		} else if(resultado >= 8 && resultado <= 13) {
-			System.out.println("Pontos: 5 pontos");
-		} else if(resultado >= 15 && resultado <= 20) {
-			System.out.println("Pontos: 6 pontos");
-		}
+		entradaValores.close();
 	}
 }

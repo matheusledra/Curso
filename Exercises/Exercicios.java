@@ -1,7 +1,6 @@
 package Curso.Exercises;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Exercicios {
 
@@ -10,7 +9,7 @@ public class Exercicios {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		int eentradaValoresolhaLista;
+		int escolhaLista;
 		entradaValores = new Scanner(System.in);
 
 		System.out.println("Selecione uma Lista: ");
@@ -19,13 +18,12 @@ public class Exercicios {
 		System.out.println("3 -> Exercícios do Ramon");
 		System.out.println("4 -> Exercícios de If/Else");
 		System.out.println("5 -> Exercícios de Switch");
-
-		eentradaValoresolhaLista = entradaValores.nextInt();
+		escolhaLista = entradaValores.nextInt();
 
 		System.out.println("");
 		System.out.println("Abrindo lista...");
-
-		switch (eentradaValoresolhaLista) {
+		
+		switch (escolhaLista) {
 		case 1:
 			ExerciciosBasicos.exerciciosBasicos();
 			break;
