@@ -231,7 +231,7 @@ public class ExerciciosSwitch {
 			} else if (resultadoPontuacao >= 15 && resultadoPontuacao <= 20) {
 				System.out.println("Pontos: 6 pontos");
 			} else if (resultadoPontuacao > 21) {
-				System.out.println("Pontos: " + resultadoPontuacao + "\nVocê Perdeu ;(");
+				System.out.println("Resultado: " + resultadoPontuacao + "\nVocê Perdeu ;(");
 			}
 		} else {
 			System.out.println("Você inseriu um número maior que 20!");
