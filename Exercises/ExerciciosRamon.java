@@ -1,7 +1,12 @@
 package Curso.Exercises;
 
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JOptionPane;
+
+import Curso.JOption;
 
 public class ExerciciosRamon {
 	
@@ -12,6 +17,7 @@ public class ExerciciosRamon {
 		System.out.println("");
 		System.out.println("1 -> Verificar se um triângulo é válido ou não, e o seu tipo");
 		System.out.println("2 -> Verificar se um número é maior ou menor que zero");
+		System.out.println("3 -> Jogo 21");
 		escolhaExercicio = entradaValores.nextInt();
 
 		System.out.println("");
@@ -24,6 +30,9 @@ public class ExerciciosRamon {
 			break;
 		case 2:
 			maiorMenorZero();
+			break;
+		case 3:
+			jogo21ComJOptionPane();
 			break;
 		default:
 			System.out.println("Exercício não encontrado...");
@@ -79,4 +88,54 @@ public class ExerciciosRamon {
 		entradaValores.close();
 	}
 
+	public static void jogo21ComJOptionPane() {
+		int numeroAleatorioJogador = ThreadLocalRandom.current().nextInt(1, 21);
+
+		String infoJogo = "---< 21 >---" +
+				  "\nVocê informa número entre 1 e 20" +
+				  "\nO sistema irá gerar um número entre 1 e 20" +
+				  "\nSe o resultado for:" +
+				  "\n7 = 10 Pontos" +
+				  "\n14 = 14 Pontos" +
+				  "\n21 = 21 Pontos" +
+				  "\nEntre 1 e 6 = 1 Ponto" +
+				  "\nEntre 8 e 13 = 5 Pontos" +
+				  "\nEntre 15 e 20 = 6 Pontos" +
+				  "\n---< 21 >---" +
+				  "\n" +
+				  "\nInforme um número entre 1 e 20";
+		
+		String entradaValor = JOptionPane.showInputDialog(null, infoJogo);
+		
+		int numeroJogador = Integer.parseInt(entradaValor);
+
+		if(numeroJogador > 20) {
+			int resultadoPontuacao = numeroJogador + numeroAleatorioJogador;
+
+			switch (resultadoPontuacao) {
+			case 7:
+				JOptionPane.showMessageDialog(null, "Pontos: " + resultadoPontuacao + " pontos", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+				break;
+			case 14:
+				JOptionPane.showMessageDialog(null, "Pontos: " + resultadoPontuacao + " pontos", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+				break;
+			case 21:
+				JOptionPane.showMessageDialog(null, "Pontos: " + resultadoPontuacao + " pontos", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+				break;
+			default:
+				break;
+			}
+			if (resultadoPontuacao >= 1 && resultadoPontuacao <= 6) {
+				JOptionPane.showMessageDialog(null, "Pontos: 1 ponto", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+			} else if (resultadoPontuacao >= 8 && resultadoPontuacao <= 13) {
+				JOptionPane.showMessageDialog(null, "Pontos: 5 pontos", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+			} else if (resultadoPontuacao >= 15 && resultadoPontuacao <= 20) {
+				JOptionPane.showMessageDialog(null, "Pontos: 6 pontos", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+			} else if (resultadoPontuacao > 21) {
+				JOptionPane.showMessageDialog(null, "Resultado: " + resultadoPontuacao + "\nVocê perdeu ;(", "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Você inseriu um número maior que 20" + numeroJogador, "Pontuação", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 }
