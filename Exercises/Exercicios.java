@@ -18,6 +18,8 @@ public class Exercicios {
 		System.out.println("3 -> Exercícios do Ramon");
 		System.out.println("4 -> Exercícios de If/Else");
 		System.out.println("5 -> Exercícios de Switch");
+		System.out.println("6 -> Exercícios de While");
+		System.out.println("7 -> Exercícios de Array");
 		escolhaLista = entradaValores.nextInt();
 
 		System.out.println("");
@@ -38,6 +40,12 @@ public class Exercicios {
 			break;
 		case 5:
 			ExerciciosSwitch.exerciciosSwitch();
+			break;
+		case 6:
+			ExerciciosWhile.exerciciosWhile();
+			break;
+		case 7:
+			ExerciciosArray.exerciciosArray();
 			break;
 		default:
 			System.out.println("Lista não encontrada...");
