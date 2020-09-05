@@ -81,118 +81,42 @@ public class ExerciciosArray {
 
 	public static void exercicioArray3() {
 		int[] numerosAleatorios = new int[10];
-		int contador = 0;
-		int menor = 101;
-		int guardarNumero = 0;
+		int contadorVerificarNumeroMenor = 0;
+		int contadorRepetirVerificacao = 0;
+		int menor = 0;
 
-		while (contador < numerosAleatorios.length) {
-			numerosAleatorios[contador] = ThreadLocalRandom.current().nextInt(1, 100);
-			contador++;
-		}
-		
-		contador = 0;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[0];
-				numerosAleatorios[0] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 1;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[1];
-				numerosAleatorios[1] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 2;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[2];
-				numerosAleatorios[2] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 3;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[3];
-				numerosAleatorios[3] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 4;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[4];
-				numerosAleatorios[4] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 5;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[5];
-				numerosAleatorios[5] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 6;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[6];
-				numerosAleatorios[6] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 7;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[7];
-				numerosAleatorios[7] = guardarNumero;
-			}
-			contador++;
-		}
-		menor = 101;
-		contador = 8;
-		while (contador < numerosAleatorios.length) {
-			if (numerosAleatorios[contador] < menor) {
-				menor = numerosAleatorios[contador];
-				guardarNumero = numerosAleatorios[contador];
-				numerosAleatorios[contador] = numerosAleatorios[8];
-				numerosAleatorios[8] = guardarNumero;
-			}
-			contador++;
+		while (contadorVerificarNumeroMenor < numerosAleatorios.length) {
+			numerosAleatorios[contadorVerificarNumeroMenor] = ThreadLocalRandom.current().nextInt(1, 100);
+			contadorVerificarNumeroMenor++;
 		}
 
-		contador = 0;
-		while (contador < numerosAleatorios.length) {
-			System.out.println(numerosAleatorios[contador]);
-			contador++;
+		System.out.println("--[ Números gerados ]--");
+		contadorVerificarNumeroMenor = 0;
+		while (contadorVerificarNumeroMenor < numerosAleatorios.length) {
+			System.out.println(numerosAleatorios[contadorVerificarNumeroMenor]);
+			contadorVerificarNumeroMenor++;
+		}
+
+		while (contadorRepetirVerificacao < numerosAleatorios.length) {
+			contadorVerificarNumeroMenor = contadorRepetirVerificacao;
+			menor = 101;
+			while (contadorVerificarNumeroMenor < numerosAleatorios.length) {
+				if (numerosAleatorios[contadorVerificarNumeroMenor] < menor) {
+					menor = numerosAleatorios[contadorVerificarNumeroMenor];
+					numerosAleatorios[contadorVerificarNumeroMenor] = numerosAleatorios[contadorRepetirVerificacao];
+					numerosAleatorios[contadorRepetirVerificacao] = menor;
+				}
+				contadorVerificarNumeroMenor++;
+			}
+			contadorRepetirVerificacao++;
+			contadorVerificarNumeroMenor++;
+		}
+		System.out.println("");
+		System.out.println("--[ Números gerados em ordem crescente ]--");
+		contadorVerificarNumeroMenor = 0;
+		while (contadorVerificarNumeroMenor < numerosAleatorios.length) {
+			System.out.println(numerosAleatorios[contadorVerificarNumeroMenor]);
+			contadorVerificarNumeroMenor++;
 		}
 	}
 
