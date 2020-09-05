@@ -48,6 +48,7 @@ public class ExerciciosWhile {
 			System.out.println("Exercício não encontrado!");
 			break;
 		}
+		escolhaExercicio.close();
 	}
 
 	// -----===[|> <!!!> <|]===---- \\
@@ -100,6 +101,7 @@ public class ExerciciosWhile {
 			}
 			numero++;
 		}
+		informaMaximo.close();
 	}
 
 	public static void exercicioWhile4() {
@@ -125,6 +127,7 @@ public class ExerciciosWhile {
 		
 		mediaTurma = somaTotal / notasAlunos.length;
 		System.out.println("Média aritmética da turma: " + mediaTurma);
+		informarInteiros.close();
 	}
 
 	public static void exercicioWhile5() {
@@ -176,6 +179,7 @@ public class ExerciciosWhile {
 			System.out.println("Suas 3 tentativas acabaram ;(");
 			System.out.println("O número era: " + numeroAleatorio);
 		}
+		tentativaAcerto.close();
 	}
 
 }
