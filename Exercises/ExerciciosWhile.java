@@ -15,6 +15,7 @@ public class ExerciciosWhile {
 		System.out.println("5 -> Números de 1 a 20 (primeiro um em baixo do outro e depois um do lado do outro)");
 		System.out.println("6 -> Números de 1000 a 1999 de resto 5 quando dividido por 11");
 		System.out.println("7 -> Acertar número");
+		System.out.println("8 -> Múltiplos de 10 de 1 a 100");
 
 		int escolha = escolhaExercicio.nextInt();
 
@@ -44,6 +45,9 @@ public class ExerciciosWhile {
 		case 7:
 			exercicioWhile7();
 			break;
+		case 8:
+			exercicioWhile8();
+			break;
 		default:
 			System.out.println("Exercício não encontrado!");
 			break;
@@ -57,7 +61,7 @@ public class ExerciciosWhile {
 
 		System.out.println("Números ímpares:");
 		while (numero <= 100) {
-			if (numero % 2 == 1) {
+			if (numero % 2 != 0) {
 				System.out.println(numero);
 			}
 			numero++;
@@ -80,12 +84,12 @@ public class ExerciciosWhile {
 		Scanner informaMaximo = new Scanner(System.in);
 		int numero = 1;
 		
-		System.out.print("Informe o intervalo máximo: ");
+		System.out.print("Informe o número máximo: ");
 		int maximo = informaMaximo.nextInt();
 		
 		System.out.println("Números ímpares:");
 		while(numero <= maximo) {
-			if(numero % 2 == 1) {
+			if(numero % 2 != 0) {
 				System.out.println(numero);
 			}
 			numero++;
@@ -106,26 +110,21 @@ public class ExerciciosWhile {
 
 	public static void exercicioWhile4() {
 		Scanner informarInteiros = new Scanner(System.in);
-		Double[] notasAlunos;
+		int qntdAlunos;
 		Double somaTotal = 0.0;
 		Double mediaTurma;
 		int repete = 0;
 		
 		System.out.print("Informe a quantidade de alunos na sala: ");
-		notasAlunos = new Double[informarInteiros.nextInt()];
+		qntdAlunos = informarInteiros.nextInt();
 		
-		while (repete < notasAlunos.length) {
+		while (repete < qntdAlunos) {
 			System.out.println("Informe a nota do " + (repete + 1) + "º aluno!");
-			notasAlunos[repete] = informarInteiros.nextDouble();
+			somaTotal += informarInteiros.nextDouble();
 			repete++;
 		}
 		
-		repete = 0;
-		while(repete < notasAlunos.length) {
-			somaTotal += notasAlunos[repete];
-		}
-		
-		mediaTurma = somaTotal / notasAlunos.length;
+		mediaTurma = somaTotal / qntdAlunos;
 		System.out.println("Média aritmética da turma: " + mediaTurma);
 		informarInteiros.close();
 	}
@@ -161,7 +160,7 @@ public class ExerciciosWhile {
 		int numeroAleatorio = ThreadLocalRandom.current().nextInt(1, 20);
 		int tentativas = 1;
 		int numeroTentativaUsuario;
-		System.out.println(numeroAleatorio);
+		
 		while(tentativas <= 3) {
 			System.out.println("Escreva um número (" + tentativas + "º tentaviva)");
 			numeroTentativaUsuario = tentativaAcerto.nextInt();
@@ -174,12 +173,22 @@ public class ExerciciosWhile {
 			}
 		}
 		
-		if(tentativas == 5) {
-		} else {
+		if(tentativas == 4) {
 			System.out.println("Suas 3 tentativas acabaram ;(");
 			System.out.println("O número era: " + numeroAleatorio);
 		}
 		tentativaAcerto.close();
 	}
 
+	public static void exercicioWhile8() {
+		int numero = 1;
+		
+		System.out.println("Números múltiplos de 10: ");
+		while(numero <= 100) {
+			if(numero % 10 == 0) {
+				System.out.println(numero);
+			}
+			numero++;
+		}
+	}
 }
