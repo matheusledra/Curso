@@ -18,6 +18,8 @@ public class ExerciciosRamon {
 		System.out.println("2 -> Verificar se um número é maior ou menor que zero");
 		System.out.println("3 -> Jogo 21");
 		System.out.println("4 -> Verificar o menor entre 10 números com while");
+		System.out.println("5 -> Apresentar números gerados aleatoriamente numa matriz");
+		System.out.println("6 -> Apresentar dados de usuário guardados em uma matriz");
 		System.out.println("");
 		System.out.println("0 -> Sair");
 
@@ -47,6 +49,14 @@ public class ExerciciosRamon {
 			break;
 		case 4:
 			whileMenorNumero();
+			TimeUnit.SECONDS.sleep(1);
+			break;
+		case 5:
+			gerarNumerosAleatoriosAprensentarMatriz();
+			TimeUnit.SECONDS.sleep(1);
+			break;
+		case 6:
+			armazenaDadosListaDados();
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		default:
@@ -156,7 +166,6 @@ public class ExerciciosRamon {
 
 		int[] arrayNumeros = new int[10];
 		int menor = 10000;
-		int maior = 0;
 		int contador = 0;
 
 		while (contador < 10) {
@@ -171,25 +180,69 @@ public class ExerciciosRamon {
 			System.out.println("Posição " + (contador + 1) + " - " + arrayNumeros[contador]);
 			contador++;
 		}
-		
+
 		contador = 0;
 		while (contador < 10) {
 			int valorArray = arrayNumeros[contador];
-			if(valorArray < menor) {
+			if (valorArray < menor) {
 				menor = valorArray;
 			}
 			contador++;
 		}
-		
+
 		contador = 0;
-		while(contador < 10) {
-			if(arrayNumeros[contador] == menor) {
+		while (contador < 10) {
+			if (arrayNumeros[contador] == menor) {
 				System.out.println("Posição do menor número no Indice " + contador);
 			}
 			contador++;
 		}
-		
+
 		System.out.println("O menor número é: " + menor);
 
 	}
+
+	public static void gerarNumerosAleatoriosAprensentarMatriz() {
+		int[][] numerosAleatorios = new int[10][10];
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				numerosAleatorios[i][j] = ThreadLocalRandom.current().nextInt(1, 1200);
+			}
+		}
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				System.out.print(String.format("%4d | ", numerosAleatorios[i][j]));
+			}
+			System.out.println("");
+		}
+
+	}
+
+	public static void armazenaDadosListaDados() {
+		Scanner entradaDados = new Scanner(System.in);
+		String[][] dadosUsuario = new String[10][3];
+
+		for (int i = 0; i < 10; i++) {
+			System.out.println("---[ " + (i + 1) + "º Usuário ]---");
+			System.out.print("Informe o nome do usuário: ");
+			dadosUsuario[i][0] = entradaDados.nextLine();
+			System.out.print("Informe a idade do usuário: ");
+			dadosUsuario[i][1] = entradaDados.nextLine();
+			System.out.print("Informe a cidade do usuário: ");
+			dadosUsuario[i][2] = entradaDados.nextLine();
+			System.out.println("");
+		}
+
+		for (int i = 0; i < 10; i++) {
+			System.out.println("---[ " + (i + 1) + "º Usuário ]---");
+			System.out.println("Nome do usuário: " + dadosUsuario[i][0]);
+			System.out.println("Idade do usuário: " + dadosUsuario[i][1]);
+			System.out.println("Cidade do usuário: " + dadosUsuario[i][2]);
+			System.out.println("");
+		}
+		entradaDados.close();
+	}
+
 }
