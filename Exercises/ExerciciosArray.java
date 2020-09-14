@@ -158,9 +158,7 @@ public class ExerciciosArray {
 		Scanner informaNumeros = new Scanner(System.in);
 		int[] numerosAleatorios = new int[5];
 		int[] numerosUsuario = new int[5];
-		int contador = 0;
-		int acertos = 0;
-		int pontos = 0;
+		int contador = 0, acertos = 0, pontos = 0, verificador = 0;
 
 		while (contador < numerosAleatorios.length) {
 			int numeroAleatorio = ThreadLocalRandom.current().nextInt(1, 25);
@@ -180,26 +178,19 @@ public class ExerciciosArray {
 			numerosUsuario[contador] = informaNumeros.nextInt();
 			contador++;
 		}
+		
 		contador = 0;
 		while (contador < numerosUsuario.length) {
-			if (numerosUsuario[0] == numerosAleatorios[contador]) {
-				acertos += 1;
-			}
-			if (numerosUsuario[1] == numerosAleatorios[contador]) {
-				acertos += 1;
-			}
-			if (numerosUsuario[2] == numerosAleatorios[contador]) {
-				acertos += 1;
-			}
-			if (numerosUsuario[3] == numerosAleatorios[contador]) {
-				acertos += 1;
-			}
-			if (numerosUsuario[4] == numerosAleatorios[contador]) {
-				acertos += 1;
+			verificador = 0;
+			while(verificador < 5) {
+				if (numerosUsuario[contador] == numerosAleatorios[verificador]) {
+					acertos += 1;
+				}
+				verificador++;
 			}
 			contador++;
 		}
-
+		
 		if (acertos == 1) {
 			pontos = 1;
 		} else if (acertos == 2) {
