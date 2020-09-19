@@ -92,6 +92,10 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor1() {
+//		  Leia um vetor de 12 posições e em seguida ler também dois valores X e Y
+//		  quaisquer correspondentes a duas posições no vetor. Ao final seu programa
+//		  deverá escrever a soma dos valores encontrados nas respectivas posições X e Y.
+
 		Scanner entradaValores = new Scanner(System.in);
 		int[] valores = new int[12];
 		int[] posicaoXY = new int[2];
@@ -121,6 +125,8 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor2() {
+//		Declare um vetor de 10 posições e o preencha com os 10 primeiros números impares e o escreva
+
 		int[] numeros = new int[10];
 		int indice = 0;
 
@@ -137,6 +143,9 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor3() {
+//		Leia um vetor de 16 posições e troque os 8 primeiros valores pelos 8 últimos e vice-e-versa. 
+//		Escreva ao final o vetor obtido
+
 		int[] numerosCriados = new int[16];
 		int[] numerosTrocados = new int[16];
 
@@ -161,6 +170,10 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor4() {
+//		Leia um vetor de 20 posições e em seguida um valor X qualquer. 
+//		Seu programa devera fazer uma busca do valor de X no vetor lido e 
+//		informar a posição em que foi encontrado ou se não foi encontrado
+
 		Scanner entradaDados = new Scanner(System.in);
 		boolean numeroEncontrado = false;
 		int[] numeros = new int[20];
@@ -192,6 +205,8 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor5() throws InterruptedException {
+//		Leia um vetor de 40 posições. Contar e escrever quantos valores pares ele possui
+
 		int[] numeros = new int[40];
 		int quantidadePares = 0;
 
@@ -216,6 +231,8 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor6() {
+//		Leia um vetor de 40 posições e atribua valor 0 para todos os elementos que possuírem valores negativos
+		
 		int[] numeros = new int[40];
 
 		for (int i = 0; i < numeros.length; i++) {
@@ -241,6 +258,9 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor7() {
+//		Leia dos vetores de 20 posições e calcule um outro vetor contendo, nas posições 
+//		pares os valores do primeiro e nas posições impares os valores do segundo.
+		
 		int[] vetorUm = new int[20];
 		int[] vetorDois = new int[20];
 		int[] vetorValoresUmEDois = new int[40];
@@ -281,6 +301,10 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor8() {
+//		 Leia um vetor de 40 posições e acumule os valores do primeiro elemento no
+//		 segundo, deste no terceiro e assim por diante. Ao final, escreva o vetor
+//		 obtido.
+
 		int[] numeros = new int[40];
 
 		System.out.println("Números gerados: ");
@@ -300,6 +324,9 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor9() {
+//		Leia um vetor contendo letras de uma frase inclusive os espaços em branco. 
+//		Retirar os espaços em branco do vetor e depois escreve-los.
+
 		String[] fraseComEspacos = { "C", "o", "o", "k", "i", "e", " ", "é", " ", "b", "o", "m" };
 		String[] fraseSemEspacos = new String[fraseComEspacos.length];
 
@@ -316,6 +343,8 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor10() {
+//		Leia um vetor de 5 posições contendo os caracteres de um numero. Em seguida escreva esse numero por extenso
+
 		String[] caracteresNumero = { "C", "i", "n", "c", "o" };
 		String numeroPorExtenso = "";
 
@@ -331,56 +360,58 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor11() {
+//		Leia dois vetores. Verifique e escreva se um é anagrama de outro
+		
 		Scanner entradaPalavras = new Scanner(System.in);
 		boolean continua = true;
 		char[] palavraUm = new char[1];
 		char[] palavraDois = new char[palavraUm.length];
 		int palavraIgual = 0;
 		int letrasIguais = 0;
-		
+
 		System.out.println("Digite a primeira palavra:");
 		palavraUm = (entradaPalavras.next()).toCharArray();
-		
+
 		System.out.println("Digite a segunda palavra: (" + palavraUm.length + " letras)");
 		palavraDois = (entradaPalavras.next()).toCharArray();
-		
+
 		for (int i = 0; i < palavraDois.length; i++) {
-			if(palavraUm[i] == palavraDois[i]) {
+			if (palavraUm[i] == palavraDois[i]) {
 				palavraIgual++;
 			} else {
 				break;
 			}
 		}
-		
-		if(palavraIgual == palavraUm.length) {
+
+		if (palavraIgual == palavraUm.length) {
 			continua = false;
 		}
-		
-		if(continua) {
+
+		if (continua) {
 			for (int i = 0; i < palavraDois.length; i++) {
 				for (int j = 0; j < palavraDois.length; j++) {
-					if(palavraUm[i] == palavraDois[j]) {
+					if (palavraUm[i] == palavraDois[j]) {
 						palavraDois[j] = ' ';
 						letrasIguais++;
 						break;
 					}
 				}
-				
-				if(letrasIguais == 0) {
+
+				if (letrasIguais == 0) {
 					break;
 				}
 			}
 		}
-		
-		System.out.println("Quantidade de letras iguais: "+ letrasIguais);
-		if(letrasIguais == palavraUm.length) {
+
+		System.out.println("Quantidade de letras iguais: " + letrasIguais);
+		if (letrasIguais == palavraUm.length) {
 			System.out.println("As palavras são anagramas");
 		} else {
 			System.out.println("As palavras não são anagramas");
 		}
 		entradaPalavras.close();
 	}
-	
+
 	public static void exercicioVetor12() {
 		int[] vetorUm = new int[9];
 		int[] vetorDois = new int[9];
@@ -413,7 +444,7 @@ public class ExercicioVetores {
 				unirVetores[i] = vetorTres[i];
 			}
 		}
-		
+
 		System.out.print("\n\nValores Unidos em Terços: \n| ");
 		for (int i = 0; i < unirVetores.length; i++) {
 			System.out.print(unirVetores[i] + " | ");
