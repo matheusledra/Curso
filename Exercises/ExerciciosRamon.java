@@ -20,6 +20,8 @@ public class ExerciciosRamon {
 		System.out.println("4 -> Verificar o menor entre 10 números com while");
 		System.out.println("5 -> Apresentar números gerados aleatoriamente numa matriz");
 		System.out.println("6 -> Apresentar dados de usuário guardados em uma matriz");
+		System.out.println("7 -> Gerar números em um vetor e no outro transforma em binário");
+		System.out.println("8 -> Gera um vetor de 100 números aleatórios que não existam ainda no vetor");
 		System.out.println("");
 		System.out.println("0 -> Sair");
 
@@ -57,6 +59,14 @@ public class ExerciciosRamon {
 			break;
 		case 6:
 			armazenaDadosListaDados();
+			TimeUnit.SECONDS.sleep(1);
+			break;
+		case 7:
+			geraTransformaBinario();
+			TimeUnit.SECONDS.sleep(1);
+			break;
+		case 8:
+			geraCemNumerosDiferentes();
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		default:
@@ -245,4 +255,51 @@ public class ExerciciosRamon {
 		entradaDados.close();
 	}
 
+	public static void geraTransformaBinario() {
+		int[] numeros = new int[20];
+		int[] binario = new int[20];
+		
+		System.out.println("Números no primeiro vetor: ");
+		for (int i = 0; i < binario.length; i++) {
+			numeros[i] = ThreadLocalRandom.current().nextInt(1, 100);
+			System.out.println("numeros[" + i + "] " + numeros[i]);
+			if(numeros[i] % 2 == 0) {
+				binario[i] = 0;
+			} else {
+				binario[i] = 1;
+			}
+		}
+		
+		System.out.println("\nNúmeros no segundo vetor: ");
+		for (int i = 0; i < binario.length; i++) {
+			System.out.println("binario[" + i + "] " + binario[i]);
+		}
+	}
+	
+	public static void geraCemNumerosDiferentes() {
+		boolean colocaNumero = false;
+		int[] numerosAleatorios = new int[100];
+		int auxiliar;
+
+		System.out.println("Números gerados:");
+		for (int i = 0; i < numerosAleatorios.length; i++) {
+			colocaNumero = true;
+			auxiliar = ThreadLocalRandom.current().nextInt(1, 100);
+
+			for (int j = i; j > 0; j--) {
+				if (numerosAleatorios[j] == auxiliar) {
+					colocaNumero = false;
+					break;
+				}
+			}
+
+			if (colocaNumero) {
+				numerosAleatorios[i] = auxiliar;
+				System.out.println(String.format("|%3d | ", numerosAleatorios[i]));
+			} else {
+				i--;
+			}
+		}
+
+	}
 }
