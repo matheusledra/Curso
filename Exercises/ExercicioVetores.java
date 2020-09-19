@@ -34,7 +34,7 @@ public class ExercicioVetores {
 
 		if (escolhaExercicio != 0) {
 			System.out.println("");
-			System.out.println("Iniciando Exercício...");
+			System.out.println("Iniciando Exercício...\n");
 			TimeUnit.SECONDS.sleep(1);
 		}
 
@@ -66,6 +66,9 @@ public class ExercicioVetores {
 		case 8:
 			exercicioVetor8();
 			break;
+		case 9:
+			exercicioVetor9();
+			break;
 		case 10:
 			exercicioVetor10();
 			break;
@@ -91,25 +94,25 @@ public class ExercicioVetores {
 	public static void exercicioVetor1() {
 		Scanner entradaValores = new Scanner(System.in);
 		int[] valores = new int[12];
-		int posicao1, posicao2, soma;
+		int[] posicaoXY = new int[2];
+		int soma;
 
-		System.out.println("Posições válidas:  ");
-		System.out.println("");
 		for (int i = 0; i < valores.length; i++) {
 			valores[i] = ThreadLocalRandom.current().nextInt(1, 100);
-			System.out.println((i + 1));
 		}
 
+		System.out.println("As posições disponíveis são de 1 a 12");
+		System.out.println("");
 		System.out.println("Escolha a primeira posição: ");
-		posicao1 = entradaValores.nextInt();
+		posicaoXY[0] = entradaValores.nextInt() - 1;
 		System.out.println("Escolha a segunda posição: ");
-		posicao2 = entradaValores.nextInt();
+		posicaoXY[1] = entradaValores.nextInt() - 1;
 
 		System.out.println("");
-		System.out.println("Número na primeira posição: " + valores[posicao1]);
-		System.out.println("Número na segunda posição: " + valores[posicao2]);
+		System.out.println("Número na posição " + (posicaoXY[0] + 1) + " = " + valores[posicaoXY[0]]);
+		System.out.println("Número na posição " + (posicaoXY[1] + 1) + " = " + valores[posicaoXY[1]]);
 
-		soma = valores[posicao1] + valores[posicao2];
+		soma = valores[posicaoXY[0]] + valores[posicaoXY[1]];
 
 		System.out.println("");
 		System.out.println("Soma dos valores: " + soma);
@@ -137,24 +140,21 @@ public class ExercicioVetores {
 		int[] numerosCriados = new int[16];
 		int[] numerosTrocados = new int[16];
 
-		for (int i = 0; i < numerosCriados.length; i++) {
-			numerosCriados[i] = ThreadLocalRandom.current().nextInt(1, 50);
-		}
-
 		System.out.println("Números criados: ");
 		for (int i = 0; i < numerosCriados.length; i++) {
+			numerosCriados[i] = ThreadLocalRandom.current().nextInt(1, 50);
 			System.out.println(numerosCriados[i]);
 		}
 
 		for (int i = 0; i < (numerosTrocados.length / 2); i++) {
 			numerosTrocados[i] = numerosCriados[i + (numerosCriados.length / 2)];
 		}
+
 		for (int i = (numerosTrocados.length / 2); i < numerosTrocados.length; i++) {
 			numerosTrocados[i] = numerosCriados[i - (numerosCriados.length / 2)];
 		}
 
-		System.out.println("");
-		System.out.println("Números com a posição alterada: ");
+		System.out.println("\nNúmeros com a posição alterada: ");
 		for (int i = 0; i < numerosTrocados.length; i++) {
 			System.out.println(numerosTrocados[i]);
 		}
@@ -162,28 +162,32 @@ public class ExercicioVetores {
 
 	public static void exercicioVetor4() {
 		Scanner entradaDados = new Scanner(System.in);
+		boolean numeroEncontrado = false;
 		int[] numeros = new int[20];
 		int numeroExcolhido;
 
 		for (int i = 0; i < numeros.length; i++) {
-			numeros[i] = ThreadLocalRandom.current().nextInt(1, 50);
+			numeros[i] = ThreadLocalRandom.current().nextInt(1, 25);
 		}
 
-		System.out.println("Escolha um número para saber sua posição: ");
-		System.out.println("");
+		System.out.println("Números criados: ");
 		for (int i = 0; i < numeros.length; i++) {
-			System.out.println(numeros[i]);
+			System.out.println("numeros[" + i + "] = " + numeros[i]);
 		}
 
+		System.out.print("Digite um número para saber a posição: ");
 		numeroExcolhido = entradaDados.nextInt();
 
 		System.out.println("");
 		for (int i = 0; i < numeros.length; i++) {
 			if (numeroExcolhido == numeros[i]) {
-				System.out.println("Posição do número: " + (i + 1));
+				System.out.println("Posição do número: [" + (i + 1) + "]");
+				numeroEncontrado = true;
 			}
 		}
-
+		if (!numeroEncontrado) {
+			System.out.println("O número " + numeroExcolhido + " não foi encontrado!");
+		}
 		entradaDados.close();
 	}
 
@@ -201,8 +205,7 @@ public class ExercicioVetores {
 		}
 
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("");
-		System.out.println("Números pares: ");
+		System.out.println("\nNúmeros pares: ");
 		for (int i = 0; i < numeros.length; i++) {
 			if (numeros[i] % 2 == 0) {
 				System.out.println(numeros[i]);
@@ -279,35 +282,25 @@ public class ExercicioVetores {
 
 	public static void exercicioVetor8() {
 		int[] numeros = new int[40];
-		int guardaUltimoNumero;
-
-		for (int i = 0; i < numeros.length; i++) {
-			numeros[i] = ThreadLocalRandom.current().nextInt(1, 80);
-		}
 
 		System.out.println("Números gerados: ");
 		for (int i = 0; i < numeros.length; i++) {
+			numeros[i] = ThreadLocalRandom.current().nextInt(1, 80);
 			System.out.println((i + 1) + " -> " + numeros[i]);
 		}
 
-		guardaUltimoNumero = numeros[numeros.length - 1];
-		for (int i = (numeros.length - 1); i > 0; i--) {
-			if (i > 0) {
-				numeros[i] = numeros[i - 1];
-			}
+		for (int i = 1; i < (numeros.length); i++) {
+			numeros[i] += numeros[i - 1];
 		}
-		numeros[0] = guardaUltimoNumero;
 
-		System.out.println("");
-		System.out.println("Números pulados uma posição a frente cada um: ");
+		System.out.println("\nNúmeros acumulados: ");
 		for (int i = 0; i < numeros.length; i++) {
 			System.out.println((i + 1) + " -> " + numeros[i]);
 		}
-
 	}
 
 	public static void exercicioVetor9() {
-		String[] fraseComEspacos = { "Eu ", "estudo", " no ", "entra21 ", "com", " o ", "Ramon" };
+		String[] fraseComEspacos = { "C", "o", "o", "k", "i", "e", " ", "é", " ", "b", "o", "m" };
 		String[] fraseSemEspacos = new String[fraseComEspacos.length];
 
 		System.out.println("Frase com espaços:");
@@ -315,13 +308,9 @@ public class ExercicioVetores {
 			System.out.print(fraseComEspacos[i]);
 		}
 
+		System.out.println("\nFrase sem espaços: ");
 		for (int i = 0; i < fraseComEspacos.length; i++) {
 			fraseSemEspacos[i] = fraseComEspacos[i].replaceAll(" ", "");
-		}
-
-		System.out.println("");
-		System.out.println("Frase sem espaços: ");
-		for (int i = 0; i < fraseSemEspacos.length; i++) {
 			System.out.print(fraseSemEspacos[i]);
 		}
 	}
@@ -341,6 +330,57 @@ public class ExercicioVetores {
 		System.out.println(numeroPorExtenso);
 	}
 
+	public static void exercicioVetor11() {
+		Scanner entradaPalavras = new Scanner(System.in);
+		boolean continua = true;
+		char[] palavraUm = new char[1];
+		char[] palavraDois = new char[palavraUm.length];
+		int palavraIgual = 0;
+		int letrasIguais = 0;
+		
+		System.out.println("Digite a primeira palavra:");
+		palavraUm = (entradaPalavras.next()).toCharArray();
+		
+		System.out.println("Digite a segunda palavra: (" + palavraUm.length + " letras)");
+		palavraDois = (entradaPalavras.next()).toCharArray();
+		
+		for (int i = 0; i < palavraDois.length; i++) {
+			if(palavraUm[i] == palavraDois[i]) {
+				palavraIgual++;
+			} else {
+				break;
+			}
+		}
+		
+		if(palavraIgual == palavraUm.length) {
+			continua = false;
+		}
+		
+		if(continua) {
+			for (int i = 0; i < palavraDois.length; i++) {
+				for (int j = 0; j < palavraDois.length; j++) {
+					if(palavraUm[i] == palavraDois[j]) {
+						palavraDois[j] = ' ';
+						letrasIguais++;
+						break;
+					}
+				}
+				
+				if(letrasIguais == 0) {
+					break;
+				}
+			}
+		}
+		
+		System.out.println("Quantidade de letras iguais: "+ letrasIguais);
+		if(letrasIguais == palavraUm.length) {
+			System.out.println("As palavras são anagramas");
+		} else {
+			System.out.println("As palavras não são anagramas");
+		}
+		entradaPalavras.close();
+	}
+	
 	public static void exercicioVetor12() {
 		int[] vetorUm = new int[9];
 		int[] vetorDois = new int[9];
@@ -348,26 +388,19 @@ public class ExercicioVetores {
 		int[] unirVetores = new int[9];
 		int valorTerco = vetorUm.length / 3;
 
+		System.out.print("Valores no primeiro vetor: \n| ");
 		for (int i = 0; i < vetorUm.length; i++) {
 			vetorUm[i] = ThreadLocalRandom.current().nextInt(1, 40);
-			vetorDois[i] = ThreadLocalRandom.current().nextInt(1, 40);
-			vetorTres[i] = ThreadLocalRandom.current().nextInt(1, 40);
-		}
-
-		System.out.println("Valores no primeiro vetor: ");
-		for (int i = 0; i < vetorUm.length; i++) {
 			System.out.print(vetorUm[i] + " | ");
 		}
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Valores no segundo vetor: ");
+		System.out.print("\n\nValores no segundo vetor: \n| ");
 		for (int i = 0; i < vetorDois.length; i++) {
+			vetorDois[i] = ThreadLocalRandom.current().nextInt(1, 40);
 			System.out.print(vetorDois[i] + " | ");
 		}
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Valores no terceiro vetor: ");
+		System.out.print("\n\nValores no terceiro vetor: \n| ");
 		for (int i = 0; i < vetorTres.length; i++) {
+			vetorTres[i] = ThreadLocalRandom.current().nextInt(1, 40);
 			System.out.print(vetorTres[i] + " | ");
 		}
 
@@ -380,10 +413,8 @@ public class ExercicioVetores {
 				unirVetores[i] = vetorTres[i];
 			}
 		}
-
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Valores Unidos em Terços");
+		
+		System.out.print("\n\nValores Unidos em Terços: \n| ");
 		for (int i = 0; i < unirVetores.length; i++) {
 			System.out.print(unirVetores[i] + " | ");
 		}
