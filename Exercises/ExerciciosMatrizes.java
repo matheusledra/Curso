@@ -12,10 +12,12 @@ public class ExerciciosMatrizes {
 		System.out.println("");
 		System.out.println("1 -> Localizar maior valor");
 		System.out.println("2 -> Diagonal com 1");
-		System.out.println("3 -> Maiores elementros entre duas matrizes (não feito)");
+		System.out.println("3 -> Maiores elementros entre duas matrizes");
 		System.out.println("4 -> Contagem de quantos valores maiores que 10 uma matriz possue");
 		System.out.println("5 -> Procurar um valor dentro de uma matriz");
 		System.out.println("6 -> Gabarito de 100 alunos");
+		System.out.println("");
+		System.out.println("0 -> Sair...");
 		escolhaExercicio = entradaValores.nextInt();
 
 		System.out.println("");
@@ -23,11 +25,17 @@ public class ExerciciosMatrizes {
 		TimeUnit.SECONDS.sleep(1);
 
 		switch (escolhaExercicio) {
+		case 0:
+			System.out.println("Saindo...");
+			break;
 		case 1:
 			exercicioMatriz1();
 			break;
 		case 2:
 			exercicioMatriz2();
+			break;
+		case 3:
+			exercicioMatriz3();
 			break;
 		case 4:
 			exercicioMatriz4();
@@ -51,17 +59,12 @@ public class ExerciciosMatrizes {
 		int linha = 0;
 		int coluna = 0;
 
-		for (int i = 0; i < matrizValores.length; i++) {
-			for (int j = 0; j < matrizValores.length; j++) {
-				matrizValores[j][i] = ThreadLocalRandom.current().nextInt(1, 999);
-			}
-		}
-
 		System.out.println("-------------------------------------");
 		System.out.println("Matriz gerada: ");
 		System.out.print("| ");
 		for (int i = 0; i < matrizValores.length; i++) {
 			for (int j = 0; j < matrizValores.length; j++) {
+				matrizValores[j][i] = ThreadLocalRandom.current().nextInt(1, 999);
 				System.out.print(String.format("%3d | ", matrizValores[j][i]));
 			}
 			System.out.println("");
@@ -88,14 +91,11 @@ public class ExerciciosMatrizes {
 	public static void exercicioMatriz2() {
 		int[][] matriz = new int[5][5];
 
-		for (int i = 0; i < matriz.length; i++) {
-			matriz[i][i] = 1;
-		}
-
 		System.out.println("Matriz obtida: ");
 		for (int i = 0; i < matriz.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matriz.length; j++) {
+				matriz[i][i] = 1;
 				System.out.print(String.format(" %1d |", matriz[i][j]));
 			}
 			System.out.println();
@@ -108,17 +108,11 @@ public class ExerciciosMatrizes {
 		int[][] matrizTres = new int[4][4];
 		int[] maior = new int[8];
 
-		for (int i = 0; i < matrizUm.length; i++) {
-			for (int j = 0; j < matrizUm.length; j++) {
-				matrizUm[i][j] = ThreadLocalRandom.current().nextInt(1, 30);
-				matrizDois[i][j] = ThreadLocalRandom.current().nextInt(1, 30);
-			}
-		}
-
 		System.out.println("Números da primeira matriz: ");
 		for (int i = 0; i < matrizTres.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matrizTres.length; j++) {
+				matrizUm[i][j] = ThreadLocalRandom.current().nextInt(1, 30);
 				System.out.print(String.format(" %2d |", matrizUm[i][j]));
 			}
 			System.out.println("");
@@ -129,6 +123,7 @@ public class ExerciciosMatrizes {
 		for (int i = 0; i < matrizTres.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matrizTres.length; j++) {
+				matrizDois[i][j] = ThreadLocalRandom.current().nextInt(1, 30);
 				System.out.print(String.format(" %2d |", matrizDois[i][j]));
 			}
 			System.out.println("");
@@ -195,6 +190,7 @@ public class ExerciciosMatrizes {
 				maior[j] = 0;
 			}
 		}
+		
 		System.out.println("Terceira matriz obtida com os maiores valores:");
 		for (int i = 0; i < 4; i++) {
 			System.out.print("|");
@@ -209,23 +205,17 @@ public class ExerciciosMatrizes {
 		int[][] matriz = new int[6][6];
 		int contagem = 0;
 
-		for (int i = 0; i < matriz.length; i++) {
-			for (int j = 0; j < matriz.length; j++) {
-				matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 20);
-			}
-		}
-
 		System.out.println("Matriz obtida: ");
 		for (int i = 0; i < matriz.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matriz.length; j++) {
+				matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 20);
 				System.out.print(String.format(" %2d |", matriz[i][j]));
 			}
 			System.out.println("");
 		}
 
-		System.out.println("");
-		System.out.println("Números maiores que 10:");
+		System.out.println("\nNúmeros maiores que 10:");
 		for (int i = 0; i < matriz.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matriz.length; j++) {
@@ -248,16 +238,11 @@ public class ExerciciosMatrizes {
 		int valorAchar;
 		int[][] matriz = new int[20][20];
 
-		for (int i = 0; i < matriz.length; i++) {
-			for (int j = 0; j < matriz.length; j++) {
-				matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 200);
-			}
-		}
-
 		System.out.println("Matriz obtida: ");
 		for (int i = 0; i < matriz.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < matriz.length; j++) {
+				matriz[i][j] = ThreadLocalRandom.current().nextInt(1, 200);
 				System.out.print(String.format(" %3d |", matriz[i][j]));
 			}
 			System.out.println("");
@@ -280,6 +265,7 @@ public class ExerciciosMatrizes {
 		System.out.println("----------");
 		if (!numeroEncontrado) {
 			System.out.println("Número não encontrado!");
+			System.out.println("----------");
 		}
 		entradaDados.close();
 	}
@@ -306,8 +292,7 @@ public class ExerciciosMatrizes {
 			}
 		}
 
-		System.out.println("");
-		System.out.println("");
+		System.out.println("\n");
 		for (int i = 0; i < acertosDosAlunos.length; i++) {
 			acertos = 0;
 			for (int j = 0; j < gabaritoRespostas.length; j++) {
