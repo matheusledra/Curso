@@ -272,4 +272,144 @@ public class RefazendoExerciciosVetores {
 	public static void exercicio11() {
 		VerificadorAnagramas.main(null);
 	}
+	
+	public static void exercicio12() {
+//		Leia 3 vetores de 9 posições e crie outro com o 1º terço do primeiro, 
+//		o segundo 3º. do segundo e o ultimo terço do 3º. Escrever o vetor resultante ao final
+
+		int[] vetorPrimeiro = new int[9];
+		int[] vetorSegundo = new int[9];
+		int[] vetorTerceiro = new int[9];
+		int[] vetorUniao = new int[9];
+		String textoPrimeiroVetor = "| ", textoSegundoVetor = "| ", textoTerceiroVetor = "| ", textoVetorUniao = "| ";
+
+		for (int i = 0; i < vetorPrimeiro.length; i++) {
+			vetorPrimeiro[i] = ThreadLocalRandom.current().nextInt(1, 100);
+			textoPrimeiroVetor += String.format("%2d | ", vetorPrimeiro[i]);
+
+			vetorSegundo[i] = ThreadLocalRandom.current().nextInt(1, 100);
+			textoSegundoVetor += String.format("%2d | ", vetorSegundo[i]);
+
+			vetorTerceiro[i] = ThreadLocalRandom.current().nextInt(1, 100);
+			textoTerceiroVetor += String.format("%2d | ", vetorTerceiro[i]);
+
+			if (i < vetorUniao.length / 3) {
+				vetorUniao[i] = vetorPrimeiro[i];
+			} else if (i < vetorUniao.length / 3 + vetorUniao.length / 3) {
+				vetorUniao[i] = vetorSegundo[i];
+			} else {
+				vetorUniao[i] = vetorTerceiro[i];
+			}
+			textoVetorUniao += String.format("%2d | ", vetorUniao[i]);
+		}
+
+		System.out.println("\nPrimeiro vetor gerado: ");
+		System.out.println(textoPrimeiroVetor);
+
+		System.out.println("\nSegundo vetor gerado: ");
+		System.out.println(textoSegundoVetor);
+
+		System.out.println("\nTerceiro vetor gerado: ");
+		System.out.println(textoTerceiroVetor);
+
+		System.out.println("\nVetor Unido: ");
+		System.out.println(textoVetorUniao);
+	}
+
+	public static void exercicio13() {
+//		Leia um vetor de 10 posições e verifique se existem valores iguais e os escreva.
+
+		int[] vetorNumerosAleatorios = new int[10];
+		boolean numerosIguaisExistem = false;
+		String textoVetorGerado = "| ";
+
+		for (int i = 0; i < vetorNumerosAleatorios.length; i++) {
+			vetorNumerosAleatorios[i] = ThreadLocalRandom.current().nextInt(1, 20);
+			textoVetorGerado += String.format("%2d | ", vetorNumerosAleatorios[i]);
+		}
+		System.out.println("Vetor gerado: ");
+		System.out.println(textoVetorGerado);
+		
+		System.out.println("\n-----------");
+		for (int i = 0; i < vetorNumerosAleatorios.length; i++) {
+			for (int j = i; j < vetorNumerosAleatorios.length; j++) {
+				if (i != j && vetorNumerosAleatorios[i] == vetorNumerosAleatorios[j]) {
+					System.out.println("vetorNumerosAleatorios[" + i + "] " + vetorNumerosAleatorios[i]);
+					System.out.println("vetorNumerosAleatorios[" + j + "] " + vetorNumerosAleatorios[j]);
+					System.out.println("-----------");
+					numerosIguaisExistem = true;
+				} else if(!numerosIguaisExistem) {
+					numerosIguaisExistem = false;
+				}
+			}
+		}
+		
+		if(!numerosIguaisExistem) {
+			System.out.println("Não existem números repetidos");
+			System.out.println("-----------");
+		}
+	}
+
+	public static void exercicio14() {
+//		Leia um vetor de 50 posições e o compacte, ou seja, elimine as 
+//		posições com valor zero avançando uma posição, com os com os valores 
+//		subseqüentes do vetor. Dessa forma todos “zeros” devem ficar para as posições finais do vetor
+
+		int[] vetorNumeros = new int[50];
+		int auxiliar = 0;
+		int quantidadeZeros = 0;
+		String textoVetorGerado = "Vetor gerado: \n";
+
+		for (int i = 0; i < vetorNumeros.length; i++) {
+			vetorNumeros[i] = ThreadLocalRandom.current().nextInt(0, 30);
+			textoVetorGerado += String.format("| %3d |\n", vetorNumeros[i]);
+		}
+		System.out.println(textoVetorGerado);
+
+		for (int i = 0; i < vetorNumeros.length; i++) {
+			for (int j = 0; j < vetorNumeros.length; j++) {
+				if (vetorNumeros[j] == 0 && j < vetorNumeros.length - 1) {
+					auxiliar = vetorNumeros[j + 1];
+					vetorNumeros[j + 1] = 0;
+					vetorNumeros[j] = auxiliar;
+				}
+			}
+		}
+
+		System.out.println("Vetor compactado:");
+		for (int i = 0; i < vetorNumeros.length; i++) {
+			System.out.println(String.format("| %3d |", vetorNumeros[i]));
+			if(vetorNumeros[i] == 0) {
+				quantidadeZeros++;
+			}
+		}
+		
+		System.out.println("A quantidade de zeros colocados para o final do vetor foram: " + quantidadeZeros);
+	}
+
+	public static void exercicio15() {
+//		Considere um vetor de trajetórias de 9 elementos, onde cada 
+//		elemento possui o valor do próximo elemento do vetor a ser lido. 
+//        Índice      1   2   3   4   5   6   7   8   9  
+//        Valor       5   7   6   9   2   8   4   0   3 
+//        Assim, a seqüência da leitura seria 1, 5, 2, 7, 4, 9, 3, 6, 8, 0
+//        Faça um algoritmo que seja capaz de ler esse vetor e seguir a trajetória
+
+		int[] valores = { 5, 7, 6, 9, 2, 8, 4, 0, 3 };
+		int trajetoria = 1;
+		String textoTrajetoria = "Trajetória: \n1, ";
+
+		System.out.println("Posição | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+		System.out.println("Valor   | 5 | 7 | 6 | 9 | 2 | 8 | 4 | 0 | 3 |\n");
+
+		for (int i = 0; i < valores.length; i++) {
+			textoTrajetoria += valores[trajetoria - 1];
+			if (valores[trajetoria - 1] != 0) {
+				textoTrajetoria += ", ";
+			}
+			trajetoria = valores[trajetoria - 1];
+		}
+
+		System.out.println(textoTrajetoria);
+	}
 }
