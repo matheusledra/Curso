@@ -54,6 +54,8 @@ public class ExerciciosMatrizes {
 	}
 
 	public static void exercicioMatriz1() {
+//		Leia uma matriz 10 x 10 e escreva a localização (linha e a coluna) do maior valor
+		
 		int[][] matrizValores = new int[10][10];
 		int maior = 0;
 		int linha = 0;
@@ -89,6 +91,10 @@ public class ExerciciosMatrizes {
 	}
 
 	public static void exercicioMatriz2() {
+//		Declare uma matriz 5 x 5. Preencha com 1 a diagonal principal 
+//		e com 0 os demais elementos. Escreva ao final a matriz obtida. 
+//		(Diagonal principal, os índices são iguais: array[1][1], array[2][2], array[3][3], etc...)
+		
 		int[][] matriz = new int[5][5];
 
 		System.out.println("Matriz obtida: ");
@@ -103,6 +109,8 @@ public class ExerciciosMatrizes {
 	}
 
 	public static void exercicioMatriz3() {
+//		Leia duas matrizes 4 x 4 e escreva uma terceira com os maiores elementos entre as primeiras
+		
 		int[][] matrizUm = new int[4][4];
 		int[][] matrizDois = new int[4][4];
 		int[][] matrizTres = new int[4][4];
@@ -202,6 +210,8 @@ public class ExerciciosMatrizes {
 	}
 	
 	public static void exercicioMatriz4() {
+//		Leia uma matriz 6 x 6, conte e escreva quantos valores maiores que 10 ela possui
+		
 		int[][] matriz = new int[6][6];
 		int contagem = 0;
 
@@ -233,6 +243,10 @@ public class ExerciciosMatrizes {
 	}
 
 	public static void exercicioMatriz5() {
+//		Leia uma matriz 20 x 20. Leia também um valor X. O programa deverá 
+//		fazer uma busca desse valor na matriz e, ao final escrever a localização 
+//		(linha e coluna) ou uma mensagem de “não encontrado”
+		
 		Scanner entradaDados = new Scanner(System.in);
 		boolean numeroEncontrado = false;
 		int valorAchar;
@@ -271,6 +285,11 @@ public class ExerciciosMatrizes {
 	}
 
 	public static void exercicioMatriz6() throws InterruptedException {
+//		Leia uma matriz 100 x 10 que se refere respostas de 10 questões de múltipla escolha, 
+//		referentes a 100 alunos. Leia também um vetor de 10 posições contendo o gabarito de 
+//		respostas que podem ser a, b, c ou d. Seu programa deverá comparar as respostas de 
+//		cada candidato com o gabarito e emitir um vetor Resultado, contendo a pontuação correspondente
+		
 		Scanner entradaDados = new Scanner(System.in);
 		int[] acertosDosAlunos = new int[100];
 		String[][] matriz = new String[acertosDosAlunos.length][10];

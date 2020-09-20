@@ -413,6 +413,9 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor12() {
+//		Leia 3 vetores de 9 posições e crie outro com o 1º terço do primeiro, 
+//		o segundo 3º. do segundo e o ultimo terço do 3º. Escrever o vetor resultante ao final
+		
 		int[] vetorUm = new int[9];
 		int[] vetorDois = new int[9];
 		int[] vetorTres = new int[9];
@@ -452,6 +455,8 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor13() {
+//		Leia um vetor de 10 posições e verifique se existem valores iguais e os escreva.
+		
 		int[] valores = new int[10];
 
 		for (int i = 0; i < valores.length; i++) {
@@ -476,6 +481,10 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor14() {
+//		Leia um vetor de 50 posições e o compacte, ou seja, elimine as 
+//		posições com valor zero avançando uma posição, com os com os valores 
+//		subseqüentes do vetor. Dessa forma todos “zeros” devem ficar para as posições finais do vetor
+		
 		int[] numeros = new int[50];
 		int auxiliar;
 
@@ -507,6 +516,14 @@ public class ExercicioVetores {
 	}
 
 	public static void exercicioVetor15() {
+//		Considere um vetor de trajetórias de 9 elementos, onde cada 
+//		elemento possui o valor do próximo elemento do vetor a ser lido. 
+//        Índice      1   2   3   4   5   6   7   8   9  
+//        Valor       5   7   6   9   2   8   4   0   3 
+//        Assim, a seqüência da leitura seria 1, 5, 2, 7, 4, 9, 3, 6, 8, 0
+//        Faça um algoritmo que seja capaz de ler esse vetor e seguir a trajetória
+
+		
 		int[] valores = { 5, 7, 6, 9, 2, 8, 4, 0, 3 };
 		int trajetoria = 1;
 
