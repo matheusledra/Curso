@@ -302,4 +302,31 @@ public class ExerciciosRamon {
 		}
 
 	}
+
+	public static void vetoresMetadeUm() {
+		int[] vetorUm = new int[20];
+		int[] vetorDois = new int[20];
+		
+		System.out.println("Primeiro vetor gerado:");
+		for (int i = 0; i < vetorUm.length; i++) {
+			vetorUm[i] = ThreadLocalRandom.current().nextInt(1, 40);
+			System.out.println("vetorUm[" + i + "] " + vetorUm[i]);
+		}
+		
+		System.out.println("\nSegundo vetor gerado: ");
+		for (int i = 0; i < vetorDois.length; i++) {
+			switch (vetorUm[i]) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+				vetorDois[i] = 0;
+				break;
+			default:
+				vetorDois[i] = (vetorUm[i] / 2);
+				break;
+			}
+			System.out.println("vetorDois[" + i + "] " + vetorDois[i]);
+		}
+	}
 }
