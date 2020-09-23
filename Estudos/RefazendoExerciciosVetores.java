@@ -278,9 +278,9 @@ public class RefazendoExerciciosVetores {
 //		o segundo 3º. do segundo e o ultimo terço do 3º. Escrever o vetor resultante ao final
 
 		int[] vetorPrimeiro = new int[9];
-		int[] vetorSegundo = new int[9];
-		int[] vetorTerceiro = new int[9];
-		int[] vetorUniao = new int[9];
+		int[] vetorSegundo = new int[vetorPrimeiro.length];
+		int[] vetorTerceiro = new int[vetorPrimeiro.length];
+		int[] vetorUniao = new int[vetorPrimeiro.length];
 		String textoPrimeiroVetor = "| ", textoSegundoVetor = "| ", textoTerceiroVetor = "| ", textoVetorUniao = "| ";
 
 		for (int i = 0; i < vetorPrimeiro.length; i++) {
