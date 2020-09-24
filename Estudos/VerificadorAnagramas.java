@@ -7,92 +7,92 @@ public class VerificadorAnagramas {
 //		Leia dois vetores. Verifique e escreva se um é anagrama de outro
 
 	public static void main(String[] args) {
-		boolean repetirPrograma = false;	
-		
-		JOptionPane.showMessageDialog(null, mensagens(0, 0, 0, "", ""), "Bem-Vindo", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			boolean repetirPrograma = false;
 
-		do {
-			String[] opcoesRepetir = { "Sim", "Não" };
-			String palavraUm = "", palavraDois = "";
-			char[] primeiraPalavra, segundaPalavra;
-			boolean tamanhoMenorMaior = false, continua = false;
-			int quantidadeLetras = 0, repetir = 1;
+			JOptionPane.showMessageDialog(null, mensagens(0, 0, 0, "", ""), "Bem-Vindo",
+					JOptionPane.INFORMATION_MESSAGE);
 
-			primeiraPalavra = JOptionPane
-					.showInputDialog(null, mensagens(1, 0, 0, "", ""), "Primeira palavra", JOptionPane.QUESTION_MESSAGE)
-					.toLowerCase().toCharArray();
 			do {
-				palavraUm = "";
-				palavraDois = "";
-				segundaPalavra = JOptionPane.showInputDialog(null, mensagens(2, primeiraPalavra.length, 0, "", ""),
-						"Segunda palavra", JOptionPane.QUESTION_MESSAGE).toLowerCase().toCharArray();
+				String[] opcoesRepetir = { "Sim", "Não" };
+				String palavraUm = "", palavraDois = "";
+				char[] primeiraPalavra, segundaPalavra;
+				boolean tamanhoMenorMaior = false, continua = false;
+				int quantidadeLetras = 0, repetir = 1;
 
-				for (int i = 0; i < primeiraPalavra.length; i++) {
-					palavraUm += primeiraPalavra[i];
-				}
-				for (int i = 0; i < segundaPalavra.length; i++) {
-					palavraDois += segundaPalavra[i];
-				}
+				palavraUm = JOptionPane.showInputDialog(null, mensagens(1, 0, 0, "", ""), "Primeira palavra",
+						JOptionPane.QUESTION_MESSAGE).toLowerCase();
+				primeiraPalavra = palavraUm.toCharArray();
+				
+				do {
+					palavraDois = JOptionPane.showInputDialog(null, mensagens(2, primeiraPalavra.length, 0, "", ""),
+							"Segunda palavra", JOptionPane.QUESTION_MESSAGE).toLowerCase();
+					
+					segundaPalavra = palavraDois.toCharArray();
 
-				if (segundaPalavra.length < primeiraPalavra.length) {
-					JOptionPane.showMessageDialog(null,
-							mensagens(3, primeiraPalavra.length, segundaPalavra.length, palavraUm, palavraDois),
-							"Erro!", JOptionPane.ERROR_MESSAGE);
-					tamanhoMenorMaior = true;
-				} else if (segundaPalavra.length > primeiraPalavra.length) {
-					JOptionPane.showMessageDialog(null,
-							mensagens(4, primeiraPalavra.length, segundaPalavra.length, palavraUm, palavraDois),
-							"Erro!", JOptionPane.ERROR_MESSAGE);
-					tamanhoMenorMaior = true;
-				} else {
-					tamanhoMenorMaior = false;
-					if (palavraUm.equals(palavraDois)) {
-						JOptionPane.showMessageDialog(null, mensagens(5, 0, 0, palavraUm, palavraDois),
-								"Palavras Iguais!", JOptionPane.INFORMATION_MESSAGE);
+					if (segundaPalavra.length < primeiraPalavra.length) {
+						JOptionPane.showMessageDialog(null,
+								mensagens(3, primeiraPalavra.length, segundaPalavra.length, palavraUm, palavraDois),
+								"Erro!", JOptionPane.ERROR_MESSAGE);
+						tamanhoMenorMaior = true;
+					} else if (segundaPalavra.length > primeiraPalavra.length) {
+						JOptionPane.showMessageDialog(null,
+								mensagens(4, primeiraPalavra.length, segundaPalavra.length, palavraUm, palavraDois),
+								"Erro!", JOptionPane.ERROR_MESSAGE);
+						tamanhoMenorMaior = true;
 					} else {
-						for (int i = 0; i < segundaPalavra.length; i++) {
-							for (int j = 0; j < segundaPalavra.length; j++) {
-								if (primeiraPalavra[i] == segundaPalavra[j]) {
-									segundaPalavra[j] = ' ';
-									quantidadeLetras++;
-									continua = true;
+						tamanhoMenorMaior = false;
+						if (palavraUm.equals(palavraDois)) {
+							JOptionPane.showMessageDialog(null, mensagens(5, 0, 0, palavraUm, palavraDois),
+									"Palavras Iguais!", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							for (int i = 0; i < segundaPalavra.length; i++) {
+								for (int j = 0; j < segundaPalavra.length; j++) {
+									if (primeiraPalavra[i] == segundaPalavra[j]) {
+										segundaPalavra[j] = ' ';
+										quantidadeLetras++;
+										continua = true;
+										break;
+									} else {
+										continua = false;
+									}
+								}
+								if (!continua) {
 									break;
-								} else {
-									continua = false;
 								}
 							}
-							if (!continua) {
-								break;
+
+							if (quantidadeLetras == primeiraPalavra.length) {
+								JOptionPane.showMessageDialog(null, mensagens(6, 0, 0, palavraUm, palavraDois));
+							} else {
+								JOptionPane.showMessageDialog(null, mensagens(7, 0, 0, palavraUm, palavraDois));
 							}
 						}
-
-						if (quantidadeLetras == primeiraPalavra.length) {
-							JOptionPane.showMessageDialog(null, mensagens(6, 0, 0, palavraUm, palavraDois));
-						} else {
-							JOptionPane.showMessageDialog(null, mensagens(7, 0, 0, palavraUm, palavraDois));
-						}
 					}
+				} while (tamanhoMenorMaior);
+
+				repetir = JOptionPane.showOptionDialog(null, mensagens(8, 0, 0, "", ""), "Repetir",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoesRepetir, opcoesRepetir[0]);
+
+				if (repetir == 0) {
+					repetirPrograma = true;
+				} else {
+					repetirPrograma = false;
+					System.exit(0);
 				}
-			} while (tamanhoMenorMaior);
-
-			repetir = JOptionPane.showOptionDialog(null, mensagens(8, 0, 0, "", ""), "Repetir",
-					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-					opcoesRepetir, opcoesRepetir[0]);
-
-			if(repetir == 0) {
-				repetirPrograma = true;
-			} else {
-				repetirPrograma = false;
-				System.exit(0);
-			}
-		} while (repetirPrograma);
+			} while (repetirPrograma);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+		} finally {
+			System.exit(0);
+		}
 	}
 
 	public static String mensagens(int mensagem, int tamanhoPrimeira, int tamanhoSegunda, String palavraUm,
 			String palavraDois) {
 		String[] vetorMensagens = new String[9];
 
-		vetorMensagens[0] = "Bem-Vindo ao verificador de Anagramas! \n\n"
+		vetorMensagens[0] = "Verificador de Anagramas \nBem-Vindo!s \n\n"
 				+ "O programa funciona da seguinte forma: \n\n" + "•  O usuário digita uma palavra, logo após uma \n"
 				+ "  outra palavra. (OBS: A quantidade de letras \n" + "  deve ser igual) \n"
 				+ "•  O programa fará a verificação instantânea e \n" + "  dará o resultado, sendo ou não um anagrama.";
