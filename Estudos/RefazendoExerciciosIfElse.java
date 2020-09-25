@@ -134,4 +134,46 @@ public class RefazendoExerciciosIfElse {
 		scEntrada.close();
 	}
 
+	public static void exercicio8() {
+		Scanner scEntrada = new Scanner(System.in);
+		int valorUm, valorDois, valorTres;
+		
+		System.out.println("Digite o primeiro valor");
+		valorUm = scEntrada.nextInt();
+		System.out.println("Digite o segundo valor");
+		valorDois = scEntrada.nextInt();
+		System.out.println("Digite o terceiro valor");
+		valorTres = scEntrada.nextInt();
+		
+		if(valorUm < valorDois && valorUm < valorTres) {
+			System.out.print(valorUm + ", ");
+			if(valorDois < valorTres) {
+				System.out.print(valorDois + ", ");
+				System.out.print(valorTres);
+			} else {
+				System.out.print(valorTres + ", ");
+				System.out.print(valorDois);
+			}
+		} else if(valorDois < valorTres && valorDois < valorUm) {
+			System.out.print(valorDois + ", ");
+			if(valorUm < valorTres) {
+				System.out.print(valorUm + ", ");
+				System.out.print(valorTres);
+			} else {
+				System.out.print(valorTres + ", ");
+				System.out.print(valorUm);
+			}
+		} else {
+			System.out.print(valorTres + ", ");
+			if(valorUm < valorDois) {
+				System.out.print(valorUm + ", ");
+				System.out.print(valorDois);
+			} else {
+				System.out.print(valorDois + ", ");
+				System.out.print(valorUm);
+			}
+		}
+		
+		scEntrada.close();
+	}
 }

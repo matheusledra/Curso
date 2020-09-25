@@ -39,35 +39,33 @@ public class ExerciciosRamon {
 			break;
 		case 1:
 			triangulo();
-			TimeUnit.SECONDS.sleep(3);
 			break;
 		case 2:
 			maiorMenorZero();
-			TimeUnit.SECONDS.sleep(3);
 			break;
 		case 3:
 			jogo21ComJOptionPane();
-			TimeUnit.SECONDS.sleep(3);
 			break;
 		case 4:
 			whileMenorNumero();
-			TimeUnit.SECONDS.sleep(1);
 			break;
 		case 5:
 			gerarNumerosAleatoriosAprensentarMatriz();
-			TimeUnit.SECONDS.sleep(1);
 			break;
 		case 6:
 			armazenaDadosListaDados();
-			TimeUnit.SECONDS.sleep(1);
 			break;
 		case 7:
 			geraTransformaBinario();
-			TimeUnit.SECONDS.sleep(1);
 			break;
 		case 8:
 			geraCemNumerosDiferentes();
-			TimeUnit.SECONDS.sleep(1);
+			break;
+		case 9:
+			vetoresMetadeUm();
+			break;
+		case 10:
+			pesoIdeal();
 			break;
 		default:
 			System.out.println("Exercício não encontrado...");
@@ -328,5 +326,114 @@ public class ExerciciosRamon {
 			}
 			System.out.println("vetorDois[" + i + "] " + vetorDois[i]);
 		}
+	}
+
+	public static void pesoIdeal() {
+		Scanner scEntrada = new Scanner(System.in);
+		boolean sexoInvalido = false;
+		double altura, pesoIdeal = 0.0;
+		int sexo;
+		
+		System.out.print("Informa sua altura: ");
+		altura = scEntrada.nextDouble();
+		System.out.print("Informe seu sexo (1- Feminino | 2- Masculino): ");
+		sexo = scEntrada.nextInt();
+		
+		if(sexo == 1) {
+			pesoIdeal = (62.1 * altura) - 44.7;
+			sexoInvalido = false;
+		} else if (sexo == 2) {
+			pesoIdeal = (72.7 * altura) - 58;
+			sexoInvalido = false;
+		} else {
+			System.out.println("Sexo iválido! " + sexo);
+			sexoInvalido = true;
+		}
+		
+		if(!sexoInvalido) System.out.println("O seu peso ideal é: " + pesoIdeal);
+		
+		scEntrada.close();
+	}
+
+	public static void poligonosUm() {
+		Scanner scEntrada = new Scanner(System.in);
+		String textoResultado = "";
+		int qntdLados, ladoUm, ladoDois;
+		double areaPoligono = 0.0;
+
+		System.out.print("Digite a quantidade de lados do polígono (3 a 5): ");
+		qntdLados = scEntrada.nextInt();
+
+		if (qntdLados == 3) {
+			System.out.println("Digite o tamanho em cm da base do triângulo: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite a altura em cm do triângulo: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = (ladoUm * ladoDois) / 2;
+			textoResultado = "Triângulo! Área: " + areaPoligono + "cm";
+		} else if (qntdLados == 4) {
+			System.out.println("Digite o tamanho em cm do primeiro lado: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite o tamanho em cm do segundo lado: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = ladoUm * ladoDois;
+			textoResultado = "Quadrado! Área: " + areaPoligono + "cm";
+		} else if (qntdLados == 5) {
+			System.out.println("Digite o tamanho em cm do primeiro lado: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite o tamanho em cm da apótema do pentágono: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = (5 * ladoUm) * ladoDois;
+			textoResultado = "Pentágono! Área: " + areaPoligono + "cm";
+		}
+
+		System.out.println(textoResultado);
+		scEntrada.close();
+	}
+
+	public static void poligonosDois() {
+		Scanner scEntrada = new Scanner(System.in);
+		String textoResultado = "";
+		int qntdLados, ladoUm, ladoDois;
+		double areaPoligono = 0.0;
+
+		System.out.print("Digite a quantidade de lados do polígono (3 a 5): ");
+		qntdLados = scEntrada.nextInt();
+
+		if (qntdLados == 3) {
+			System.out.println("Digite o tamanho em cm da base do triângulo: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite a altura em cm do triângulo: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = (ladoUm * ladoDois) / 2;
+			textoResultado = "Triângulo! Área: " + areaPoligono + "cm";
+		} else if (qntdLados == 4) {
+			System.out.println("Digite o tamanho em cm do primeiro lado: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite o tamanho em cm do segundo lado: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = ladoUm * ladoDois;
+			textoResultado = "Quadrado! Área: " + areaPoligono + "cm";
+		} else if (qntdLados == 5) {
+			System.out.println("Digite o tamanho em cm do primeiro lado: ");
+			ladoUm = scEntrada.nextInt();
+			System.out.println("Digite o tamanho em cm da apótema do pentágono: ");
+			ladoDois = scEntrada.nextInt();
+
+			areaPoligono = (5 * ladoUm) * ladoDois;
+			textoResultado = "Pentágono! Área: " + areaPoligono + "cm";
+		} else if (qntdLados > 5) {
+			textoResultado = "Polígono não identificado!";
+		} else if (qntdLados < 3) {
+			textoResultado = "Não é um polígono!";
+		}
+
+		System.out.println(textoResultado);
+		scEntrada.close();
 	}
 }
