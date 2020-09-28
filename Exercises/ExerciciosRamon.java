@@ -67,6 +67,12 @@ public class ExerciciosRamon {
 		case 10:
 			pesoIdeal();
 			break;
+		case 11:
+			poligonosUm();
+			break;
+		case 12:
+			poligonosDois();
+			break;
 		default:
 			System.out.println("Exercício não encontrado...");
 			break;
