@@ -6,6 +6,41 @@ import javax.swing.JOptionPane;
 
 public class Prova_1_10_2020 {
 
+	public static void main(String[] args) {
+		String[] exercicios = { "1 - Divisão de Números", "2 - Somatória de Números",
+				"3 - Encontrar maior/menor e média", "4 - Jodo do Acerto" };
+		Object opcaoSelecionada;
+		char[] conversaoStringParaCharArray;
+		String conversaoOpcaoSelecionadaEmString, pegarNumeroDoCharArray;
+		int questaoEscolhida;
+
+		opcaoSelecionada = JOptionPane.showInputDialog(null, "Escolha uma Questão", "Questões Prova",
+				JOptionPane.INFORMATION_MESSAGE, null, exercicios, exercicios[0]);
+
+		conversaoOpcaoSelecionadaEmString = "" + opcaoSelecionada;
+		conversaoStringParaCharArray = conversaoOpcaoSelecionadaEmString.toCharArray();
+		pegarNumeroDoCharArray = "" + conversaoStringParaCharArray[0];
+		questaoEscolhida = Integer.parseInt(pegarNumeroDoCharArray);
+		
+		switch (questaoEscolhida) {
+		case 1:
+			questao1();
+			break;
+		case 2:
+			questao2();
+			break;
+		case 3:
+			questao3();
+			break;
+		case 4:
+			questao4();
+			break;
+		default:
+			break;
+		}
+		
+	}
+
 	public static void questao1() {
 		boolean repetirDivisao = false;
 		String confirmacaoRepeticao;
@@ -26,7 +61,7 @@ public class Prova_1_10_2020 {
 						"Resultado: \n" + numeroUm + " / " + numeroDois + " = " + resultadoDivisao, "Resultado",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja repetir o programa?",
+				confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja repetir o programa? S/N",
 						"Repetir o Programa?", JOptionPane.QUESTION_MESSAGE);
 
 				repetirDivisao = (confirmacaoRepeticao.equalsIgnoreCase("S")) ? true : false;
@@ -64,7 +99,7 @@ public class Prova_1_10_2020 {
 					JOptionPane.showMessageDialog(null, "Somatória concluída! \n\nSoma total: " + somaTotal,
 							"Soma concluída", JOptionPane.INFORMATION_MESSAGE);
 
-					confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja fazer outra somatória?",
+					confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja fazer outra somatória? S/N",
 							"Repetir Programa?", JOptionPane.QUESTION_MESSAGE);
 
 					repetirPrograma = (confirmacaoRepeticao.equalsIgnoreCase("S")) ? true : false;
@@ -108,7 +143,7 @@ public class Prova_1_10_2020 {
 								+ media,
 						"Números gerados", JOptionPane.INFORMATION_MESSAGE);
 
-				confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja repetir o programa?",
+				confirmacaoRepeticao = JOptionPane.showInputDialog(null, "Deseja repetir o programa? S/N",
 						"Repetir Programa?", JOptionPane.QUESTION_MESSAGE);
 
 				repetirPrograma = (confirmacaoRepeticao.equalsIgnoreCase("S")) ? true : false;
