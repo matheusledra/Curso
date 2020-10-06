@@ -40,10 +40,23 @@ public class ClasseExecutora {
 
     public static void exerc1CadastroUsuario() {
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
+        CarroUsuario carroUsuario = new CarroUsuario();
 
         cadastroUsuario.setName(JOptionPane.showInputDialog(null, "Digite o nome do usuário", "Cadastro", JOptionPane.QUESTION_MESSAGE));
         cadastroUsuario.setIdade(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a idade do usuário", "Cadastro", JOptionPane.QUESTION_MESSAGE)));
 
-        JOptionPane.showMessageDialog(null, "Cadastrado com sucesso! \n\nNome: " + cadastroUsuario.getName() + "\nIdade: " + cadastroUsuario.getIdade(), "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
+        String informacoesUsuario = "Cadastrado com sucesso! \n\nNome: " + cadastroUsuario.getName() + "\nIdade: " + cadastroUsuario.getIdade();
+        
+        String usuarioTemCarro = JOptionPane.showInputDialog(null, "Você tem um carro? S/N", "Tem carro?", JOptionPane.QUESTION_MESSAGE);
+        
+        if (usuarioTemCarro.equalsIgnoreCase("S")) {
+            String nomeCarro = JOptionPane.showInputDialog(null, "Digite o nome do carro", "Cadastro", JOptionPane.QUESTION_MESSAGE);
+            int anoCarro = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ano do carro", "Cadastro", JOptionPane.QUESTION_MESSAGE));
+
+            carroUsuario.setCarro(nomeCarro, anoCarro);
+            informacoesUsuario += "\n\nNome do carro do usuário: " + cadastroUsuario.getCarro().getNomeCarro() + "\nAno do carro: " + cadastroUsuario.getCarro().getAnoCarro();
+        }
+
+        JOptionPane.showMessageDialog(null, informacoesUsuario, "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
     }
 }

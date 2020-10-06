@@ -1,9 +1,9 @@
 package projetocurso.exercicios;
 
 public class CadastroUsuario {
-
-    String nome;
-    int idade;
+    private String nome;
+    private int idade;
+    private CarroUsuario carro;
 
     /**
      * Salva o nome do usuário
@@ -43,5 +43,9 @@ public class CadastroUsuario {
      */
     public int getIdade() {
         return this.idade;
+    }
+    
+    public CarroUsuario getCarro() {
+        return this.carro;
     }
 }
