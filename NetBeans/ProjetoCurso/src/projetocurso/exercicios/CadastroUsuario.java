@@ -45,6 +45,10 @@ public class CadastroUsuario {
         return this.idade;
     }
     
+    public void setCarro(String nomeCarro, int anoCarro) {
+        this.carro = new CarroUsuario(nomeCarro, anoCarro);
+    }
+    
     public CarroUsuario getCarro() {
         return this.carro;
     }
