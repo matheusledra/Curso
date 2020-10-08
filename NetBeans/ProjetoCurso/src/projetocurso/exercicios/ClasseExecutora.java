@@ -11,7 +11,8 @@ public class ClasseExecutora {
                 int opcaoEscolhida = 0;
                 String exercicioOpcoes = "Escolha um exercício: \n"
                         + "\n1 - Orientação Objetos - Exerc 1 (Get/Set Cadastro Usuário)"
-                        + "\n2 - Orientação Objetos - Exerc 2 (Pet Shop)";
+                        + "\n2 - Orientação Objetos - Exerc 2 (Pet Shop)"
+                        + "\n3 - ArrayList/Orientação Objetos - Exerc 3 (Compromissos)";
 
                 String opcaoEscolhidaString = JOptionPane.showInputDialog(null, exercicioOpcoes, "Exercícios", JOptionPane.QUESTION_MESSAGE);
 
@@ -28,6 +29,10 @@ public class ClasseExecutora {
                         break;
                     case 2:
                         exerc2PetShop();
+                        executarNovamente = false;
+                        break;
+                    case 3:
+                        exerc3Compromissos();
                         executarNovamente = false;
                         break;
                     default:
@@ -122,5 +127,46 @@ public class ClasseExecutora {
         }
 
         JOptionPane.showMessageDialog(null, "Pet-Shop PetFeliz \n\n" + informacoesPet, "Pet-Shop", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void exerc3Compromissos() {
+        try {
+            Pessoa pessoa = new Pessoa();
+
+            String nome = JOptionPane.showInputDialog(null, "Digite seu nome", "Nome", JOptionPane.QUESTION_MESSAGE);
+            String sexo = JOptionPane.showInputDialog(null, "Digite seu sexo", "Sexo", JOptionPane.QUESTION_MESSAGE);
+
+            pessoa.setPessoa(nome, sexo);
+
+            int qntdCompromissos = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantos compromissos você tem?", "Quantidade Compromissos", JOptionPane.QUESTION_MESSAGE));
+
+            for (int i = 0; i < qntdCompromissos; i++) {
+                String titulo = JOptionPane.showInputDialog(null, "Digite o título do " + (i + 1) +  "º compromisso", "Titulo", JOptionPane.QUESTION_MESSAGE);
+                String tipo = JOptionPane.showInputDialog(null, "Digite o tipo do compromisso \n\nOnline, presencial, etc.", "Tipo", JOptionPane.QUESTION_MESSAGE);
+                String data = JOptionPane.showInputDialog(null, "Digite a data do compromisso \n\nDD/MM/AAAA", "Data", JOptionPane.QUESTION_MESSAGE);
+                String local = JOptionPane.showInputDialog(null, "Digite o local do compromisso", "Local", JOptionPane.QUESTION_MESSAGE);
+
+                pessoa.setCompromisso(titulo, tipo, data, local);
+                pessoa.setCompromisso();
+            }
+
+            String compromissosSalvos = "Compromissos de " + pessoa.getNome()
+                    + "\n\n=====================================\n";
+
+            for (int i = 0; i < qntdCompromissos; i++) {
+                compromissosSalvos += "Compromisso " + (i + 1)
+                        + "\nTítulo - " + pessoa.getCompromisso(i).getTitulo()
+                        + "\nTipo - " + pessoa.getCompromisso(i).getTipo()
+                        + "\nData - " + pessoa.getCompromisso(i).getData()
+                        + "\nLocal - " + pessoa.getCompromisso(i).getLocal()
+                        + "\n=====================================\n";
+
+            }
+
+            JOptionPane.showMessageDialog(null, compromissosSalvos, "Compromissos", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro!\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
