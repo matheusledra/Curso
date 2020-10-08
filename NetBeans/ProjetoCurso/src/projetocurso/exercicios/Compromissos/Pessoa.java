@@ -1,4 +1,4 @@
-package projetocurso.exercicios;
+package projetocurso.exercicios.Compromissos;
 
 import java.text.ParseException;
 import java.util.ArrayList;

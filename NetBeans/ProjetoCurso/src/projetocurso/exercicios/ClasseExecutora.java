@@ -1,6 +1,9 @@
 package projetocurso.exercicios;
 
 import javax.swing.JOptionPane;
+import projetocurso.exercicios.CadUsuarioCarro.CadastroUsuario;
+import projetocurso.exercicios.Compromissos.Pessoa;
+import projetocurso.exercicios.PetShop.PetShop;
 
 public class ClasseExecutora {
 

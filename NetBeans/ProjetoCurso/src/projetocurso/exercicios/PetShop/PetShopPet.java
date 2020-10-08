@@ -1,4 +1,4 @@
-package projetocurso.exercicios;
+package projetocurso.exercicios.PetShop;
 
 public class PetShopPet {
 

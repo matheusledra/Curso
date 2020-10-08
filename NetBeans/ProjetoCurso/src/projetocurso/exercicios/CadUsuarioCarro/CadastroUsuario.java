@@ -1,4 +1,4 @@
-package projetocurso.exercicios;
+package projetocurso.exercicios.CadUsuarioCarro;
 
 public class CadastroUsuario {
     private String nome;

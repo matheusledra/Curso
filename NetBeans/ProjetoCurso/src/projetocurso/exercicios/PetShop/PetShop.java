@@ -1,4 +1,4 @@
-package projetocurso.exercicios;
+package projetocurso.exercicios.PetShop;
 
 import java.util.ArrayList;
 
