@@ -19,10 +19,6 @@ public class Pessoa {
         return this.comp.get(indice);
     }
     
-    public ArrayList<Compromissos> getCompromissos() {
-        return this.comp;
-    }
-    
     public void setPessoa(String nome, String sexo) {
         this.nome = nome;
         this.sexo = sexo;
