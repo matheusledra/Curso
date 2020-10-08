@@ -2,9 +2,9 @@ package projetocurso.exercicios;
 
 public class PetShopPet {
 
-    String nomePet;
-    String tipoPet;
-    String corPet;
+    private String nomePet;
+    private String tipoPet;
+    private String corPet;
 
     public PetShopPet(String nomePet, String tipoPet, String corPet) {
         this.nomePet = nomePet;

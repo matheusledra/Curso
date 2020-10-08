@@ -1,10 +1,12 @@
 package projetocurso.exercicios;
 
+import java.util.ArrayList;
+
 public class PetShopDono {
 
     private String nomeDono;
     private int idadeDono;
-    private String pet;
+    private ArrayList<String> pet = new ArrayList<String>();
 
     /**
      * Seta as informações do Dono no Pet
@@ -13,10 +15,13 @@ public class PetShopDono {
      * @param idadeDono
      * @param nomePet
      */
-    public PetShopDono(String nomeDono, int idadeDono, String nomePet) {
+    public PetShopDono(String nomeDono, int idadeDono) {
         this.nomeDono = nomeDono;
         this.idadeDono = idadeDono;
-        this.pet = nomePet;
+    }
+    
+    public void addPet(String nomePet) {
+        this.pet.add(nomePet);
     }
 
     /**
@@ -42,7 +47,7 @@ public class PetShopDono {
      *
      * @return
      */
-    public String getPet() {
+    public ArrayList<String> getPet() {
         return this.pet;
     }
 }

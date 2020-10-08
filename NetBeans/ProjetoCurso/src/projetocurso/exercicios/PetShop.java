@@ -1,10 +1,17 @@
 package projetocurso.exercicios;
 
+import java.util.ArrayList;
+
 public class PetShop {
 
+    private ArrayList<PetShopPet> petList = new ArrayList<PetShopPet>();
     private PetShopPet pet;
     private PetShopDono donoPet;
 
+    public void setPet(String nomePet, String tipoPet, String corPet) {
+        this.pet = new PetShopPet(nomePet, tipoPet, corPet);
+    }
+    
     /**
      * Seta as informações do Dono do Pet
      *
@@ -12,19 +19,17 @@ public class PetShop {
      * @param idadeDono
      * @param nomePet
      */
-    public void setDonoPet(String nomeDono, int idadeDono, String nomePet) {
-        this.donoPet = new PetShopDono(nomeDono, idadeDono, nomePet);
+    public void setDonoPet(String nomeDono, int idadeDono) {
+        this.donoPet = new PetShopDono(nomeDono, idadeDono);
     }
 
     /**
      * Seta as informações do Pet
      *
-     * @param nomePet
-     * @param tipoPet
-     * @param corPet
      */
-    public void setPet(String nomePet, String tipoPet, String corPet) {
-        this.pet = new PetShopPet(nomePet, tipoPet, corPet);
+    public void setPet() {
+        this.petList.add(this.pet);
+//        this.pet = new PetShopPet(nomePet, tipoPet, corPet);
     }
 
     /**
@@ -36,12 +41,11 @@ public class PetShop {
         return this.donoPet;
     }
 
-    /**
-     * Informações sobre o Pet
-     *
-     * @return
-     */
-    public PetShopPet getPet() {
-        return this.pet;
+    public PetShopPet getPet(int indice) {
+        return this.petList.get(indice);
+    }
+    
+    public ArrayList<PetShopPet> getPets() {
+        return this.petList;
     }
 }

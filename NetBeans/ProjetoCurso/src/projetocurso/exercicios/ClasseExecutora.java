@@ -14,7 +14,7 @@ public class ClasseExecutora {
                         + "\n2 - Orientação Objetos - Exerc 2 (Pet Shop)";
 
                 String opcaoEscolhidaString = JOptionPane.showInputDialog(null, exercicioOpcoes, "Exercícios", JOptionPane.QUESTION_MESSAGE);
-                
+
                 if (!(opcaoEscolhidaString == null)) {
                     opcaoEscolhida = Integer.parseInt(opcaoEscolhidaString);
                 } else {
@@ -72,36 +72,54 @@ public class ClasseExecutora {
 
     public static void exerc2PetShop() {
         PetShop petShop = new PetShop();
-        String nomeDono = "", nomePet = "", tipoPet = "", corPet = "", idadeDonoString = "";
-        int idadeDonoInt = 0;
-        boolean camposVazios = false;
+        String nomeDono = "", nomePet = "", tipoPet = "", corPet = "";
+        int idadeDono = 0;
+        boolean camposVaziosDono = false, camposVaziosPet = false;
 
         JOptionPane.showMessageDialog(null, "Pet-Shop PetFeliz \n\nVamos começar o cadastro do seu pet", "Pet-Shop", JOptionPane.INFORMATION_MESSAGE);
 
         do {
             nomeDono = JOptionPane.showInputDialog(null, "Digite seu nome ", "Dono Pet", JOptionPane.QUESTION_MESSAGE);
-            idadeDonoString = JOptionPane.showInputDialog(null, "Digite sua idade ", "Dono Pet", JOptionPane.QUESTION_MESSAGE);
-            nomePet = JOptionPane.showInputDialog(null, "Digite o nome do seu pet", "Pet", JOptionPane.QUESTION_MESSAGE);
-            tipoPet = JOptionPane.showInputDialog(null, "Digite o tipo do seu pet \nCachorro, gato, etc. ", "Pet", JOptionPane.QUESTION_MESSAGE);
-            corPet = JOptionPane.showInputDialog(null, "Digite a cor do seu pet ", "Pet", JOptionPane.QUESTION_MESSAGE);
+            idadeDono = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite sua idade ", "Dono Pet", JOptionPane.QUESTION_MESSAGE));
 
-            if (!"".equals(nomeDono) && !"".equals(idadeDonoString) && !"".equals(nomePet) && !"".equals(tipoPet) && !"".equals(corPet)) {
-                camposVazios = false;
-                idadeDonoInt = Integer.parseInt(idadeDonoString);
+            if (!"".equals(nomeDono) && idadeDono > 1) {
+                camposVaziosDono = false;
             } else {
-                camposVazios = true;
-                JOptionPane.showMessageDialog(null, "Erro! \nUm ou mais campos ficaram vazios!", "Erro", JOptionPane.ERROR_MESSAGE);
+                camposVaziosDono = true;
             }
-        } while (camposVazios);
+            petShop.setDonoPet(nomeDono, idadeDono);
 
-        petShop.setDonoPet(nomeDono, idadeDonoInt, nomePet);
-        petShop.setPet(nomePet, tipoPet, corPet);
+        } while (camposVaziosDono);
+
+        int qntdPets = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantos pets você tem? ", "Quantidade Pets", JOptionPane.QUESTION_MESSAGE));
+
+        for (int i = 0; i < qntdPets; i++) {
+            do {
+                nomePet = JOptionPane.showInputDialog(null, "Digite o nome do seu pet", "Pet", JOptionPane.QUESTION_MESSAGE);
+                tipoPet = JOptionPane.showInputDialog(null, "Digite o tipo do seu pet \nCachorro, gato, etc. ", "Pet", JOptionPane.QUESTION_MESSAGE);
+                corPet = JOptionPane.showInputDialog(null, "Digite a cor do seu pet ", "Pet", JOptionPane.QUESTION_MESSAGE);
+
+                if (!"".equals(nomePet) && !"".equals(tipoPet) && !"".equals(corPet)) {
+                    camposVaziosPet = false;
+                } else {
+                    camposVaziosPet = true;
+                    JOptionPane.showMessageDialog(null, "Erro! \nUm ou mais campos ficaram vazios!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+                petShop.setPet(nomePet, tipoPet, corPet);
+                petShop.getDonoPet().addPet(nomePet);
+                petShop.setPet();
+            } while (camposVaziosPet);
+        }
 
         String informacoesPet = "Informações do seu Pet: \n\nNome do Dono: " + petShop.getDonoPet().getNome()
                 + "\nIdade do Dono: " + petShop.getDonoPet().getIdade()
-                + "\n\nNome do Pet: " + petShop.getPet().getNome()
-                + "\nTipo do Pet: " + petShop.getPet().getTipo()
-                + "\nCor do Pet: " + petShop.getPet().getCor();
+                + "\n====================\n";
+        for (int i = 0; i < petShop.getPets().size(); i++) {
+            informacoesPet += "Nome do Pet: " + petShop.getPets().get(i).getNome()
+                    + "\nTipo do Pet: " + petShop.getPets().get(i).getTipo()
+                    + "\nCor do Pet: " + petShop.getPets().get(i).getCor()
+                    + "\n====================\n";
+        }
 
         JOptionPane.showMessageDialog(null, "Pet-Shop PetFeliz \n\n" + informacoesPet, "Pet-Shop", JOptionPane.INFORMATION_MESSAGE);
     }
