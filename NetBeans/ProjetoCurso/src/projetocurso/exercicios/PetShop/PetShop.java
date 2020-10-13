@@ -2,14 +2,14 @@ package projetocurso.exercicios.PetShop;
 
 import java.util.ArrayList;
 
-public class PetShop {
+public class PetShop extends PetShopPet{
 
     private ArrayList<PetShopPet> petList = new ArrayList<PetShopPet>();
     private PetShopPet pet;
     private PetShopDono donoPet;
 
     public void setPet(String nomePet, String tipoPet, String corPet) {
-        this.pet = new PetShopPet(nomePet, tipoPet, corPet);
+        setPetPet(nomePet, tipoPet, corPet);
     }
     
     /**

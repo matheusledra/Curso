@@ -1,12 +1,14 @@
 package projetocurso.exercicios.PetShop;
 
-public class PetShopPet {
+public abstract class PetShopPet {
 
     private String nomePet;
     private String tipoPet;
     private String corPet;
+    
+    public PetShopPet(){}
 
-    public PetShopPet(String nomePet, String tipoPet, String corPet) {
+    public void setPetPet(String nomePet, String tipoPet, String corPet) {
         this.nomePet = nomePet;
         this.tipoPet = tipoPet;
         this.corPet = corPet;
@@ -37,5 +39,9 @@ public class PetShopPet {
      */
     public String getCor() {
         return this.corPet;
+    }
+    
+    public String emiteSom() {
+        return new String("Baaaaarh");
     }
 }
