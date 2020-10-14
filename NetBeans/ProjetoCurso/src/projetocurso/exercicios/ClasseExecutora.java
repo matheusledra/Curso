@@ -3,6 +3,10 @@ package projetocurso.exercicios;
 import javax.swing.JOptionPane;
 import projetocurso.exercicios.CadUsuarioCarro.CadastroUsuario;
 import projetocurso.exercicios.Compromissos.Pessoa;
+import projetocurso.exercicios.Faculdade.Professor;
+import projetocurso.exercicios.Funcionario.Atendente;
+import projetocurso.exercicios.Funcionario.Funcionario;
+import projetocurso.exercicios.Funcionario.Gerente;
 import projetocurso.exercicios.PetShop.PetShop;
 
 public class ClasseExecutora {
@@ -15,7 +19,8 @@ public class ClasseExecutora {
                 String exercicioOpcoes = "Escolha um exercício: \n"
                         + "\n1 - Orientação Objetos - Exerc 1 (Get/Set Cadastro Usuário)"
                         + "\n2 - Orientação Objetos - Exerc 2 (Pet Shop)"
-                        + "\n3 - ArrayList/Orientação Objetos - Exerc 3 (Compromissos)";
+                        + "\n3 - ArrayList/Orientação Objetos - Exerc 3 (Compromissos)"
+                        + "\n4 - Orientação Objetos - Exerc 4 (Funcionário)";
 
                 String opcaoEscolhidaString = JOptionPane.showInputDialog(null, exercicioOpcoes, "Exercícios", JOptionPane.QUESTION_MESSAGE);
 
@@ -36,6 +41,14 @@ public class ClasseExecutora {
                         break;
                     case 3:
                         exerc3Compromissos();
+                        executarNovamente = false;
+                        break;
+                    case 4:
+                        exerc4Funcionario();
+                        executarNovamente = false;
+                        break;
+                    case 5:
+                        exerc5Faculdade();
                         executarNovamente = false;
                         break;
                     default:
@@ -131,7 +144,7 @@ public class ClasseExecutora {
 
         JOptionPane.showMessageDialog(null, "Pet-Shop PetFeliz \n\n" + informacoesPet, "Pet-Shop", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     public static void exerc3Compromissos() {
         try {
             Pessoa pessoa = new Pessoa();
@@ -144,7 +157,7 @@ public class ClasseExecutora {
             int qntdCompromissos = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantos compromissos você tem?", "Quantidade Compromissos", JOptionPane.QUESTION_MESSAGE));
 
             for (int i = 0; i < qntdCompromissos; i++) {
-                String titulo = JOptionPane.showInputDialog(null, "Digite o título do " + (i + 1) +  "º compromisso", "Titulo", JOptionPane.QUESTION_MESSAGE);
+                String titulo = JOptionPane.showInputDialog(null, "Digite o título do " + (i + 1) + "º compromisso", "Titulo", JOptionPane.QUESTION_MESSAGE);
                 String tipo = JOptionPane.showInputDialog(null, "Digite o tipo do compromisso \n\nOnline, presencial, etc.", "Tipo", JOptionPane.QUESTION_MESSAGE);
                 String data = JOptionPane.showInputDialog(null, "Digite a data do compromisso \n\nDD/MM/AAAA", "Data", JOptionPane.QUESTION_MESSAGE);
                 String local = JOptionPane.showInputDialog(null, "Digite o local do compromisso", "Local", JOptionPane.QUESTION_MESSAGE);
@@ -167,9 +180,50 @@ public class ClasseExecutora {
             }
 
             JOptionPane.showMessageDialog(null, compromissosSalvos, "Compromissos", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro!\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public static void exerc4Funcionario() {
+
+        Gerente funGerente = new Gerente();
+        Atendente funAtendente = new Atendente();
+
+        String nome = JOptionPane.showInputDialog(null, "Digite o nome do funcionário", "Nome", JOptionPane.QUESTION_MESSAGE);
+        String departamento = JOptionPane.showInputDialog(null, "Digite o departamento do funcionário", "Departamento", JOptionPane.QUESTION_MESSAGE);
+        double salario = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o salário do funcionário", "Salário", JOptionPane.QUESTION_MESSAGE));
+        String rg = JOptionPane.showInputDialog(null, "Digite o rg do funcionário", "RG", JOptionPane.QUESTION_MESSAGE);
+        String entrada = JOptionPane.showInputDialog(null, "Digite a data de entrada do funcionário", "Entrada", JOptionPane.QUESTION_MESSAGE);
+
+        funAtendente.setNome(nome);
+        funAtendente.setDepartamento(departamento);
+        funAtendente.setSalario(salario);
+        funAtendente.setRg(rg);
+        funAtendente.setDataEntrada(entrada);
+
+        JOptionPane.showMessageDialog(null, "Funcionário: \n\nNome: " + funAtendente.getNome() + "\nDepartamento: " + funAtendente.getDepartamento() + "\nSalario: R$" + funAtendente.getSalario() + "\nRG: " + funAtendente.getRg() + "\nData de Entrada: " + funAtendente.getEntradaBanco() + "\n\nGanho Anual: " + funAtendente.calculaGanhoAnual());
+
+        boolean aumento = ("S".equalsIgnoreCase(JOptionPane.showInputDialog(null, "Deseja dar um aumento ao funcionário? S/N"))) ? true : false;
+
+        if (aumento) {
+            funAtendente.recebeAumento(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o aumento")));
+
+            JOptionPane.showMessageDialog(null, "Funcionário: \n\nNome: " + funAtendente.getNome() + "\nDepartamento: " + funAtendente.getDepartamento() + "\nSalario: R$" + funAtendente.getSalario() + "\nRG: " + funAtendente.getRg() + "\nData de Entrada: " + funAtendente.getEntradaBanco() + "\n\nGanho Anual: " + funAtendente.calculaGanhoAnual());
+        }
+    }
+
+    public static void exerc5Faculdade() {
+        String nomeProfessor = JOptionPane.showInputDialog(null, "Digite o nome do professor");
+        double salarioProfessor = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o salário do professor"));
+        int horasDeAula = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de horas de aula"));
+
+        Professor prof = new Professor();
+        prof.setNome(nomeProfessor);
+        prof.setSalario(salarioProfessor);
+        prof.setHorasDeAula(horasDeAula);
+
+        JOptionPane.showMessageDialog(null, prof.getInfo());
     }
 }
