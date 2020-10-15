@@ -51,6 +51,10 @@ public class ClasseExecutora {
                         exerc5Faculdade();
                         executarNovamente = false;
                         break;
+                    case 6:
+                        exerc6Faculdade2();
+                        executarNovamente = false;
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Exercício inválido! \"" + opcaoEscolhida + "\"");
                         executarNovamente = true;
@@ -225,5 +229,16 @@ public class ClasseExecutora {
         prof.setHorasDeAula(horasDeAula);
 
         JOptionPane.showMessageDialog(null, prof.getInfo());
+    }
+    
+    public static void exerc6Faculdade2() {
+        projetocurso.interfaces.Professor prof = new projetocurso.interfaces.Professor();
+        
+        prof.setNome("Prof");
+        prof.setDepto("Aula");
+        prof.setHorasDeAula(500);
+        prof.setSalario(1500);
+        
+        System.out.println(prof.getInfo());
     }
 }
