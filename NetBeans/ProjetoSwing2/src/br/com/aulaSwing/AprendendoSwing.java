@@ -132,13 +132,21 @@ public class AprendendoSwing extends javax.swing.JFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
 
         if (!txtNome.getText().trim().isEmpty() && !txtPeso.getText().trim().isEmpty() && !txtAltura.getText().trim().isEmpty()) {
-            double peso = Double.parseDouble(txtPeso.getText());
-            double altura = Double.parseDouble(txtAltura.getText());
+            double peso = Double.parseDouble(txtPeso.getText().replace(",", "."));
+            double altura = Double.parseDouble(txtAltura.getText().replace(",", "."));
             double resultado;
-
+            
+            String txtResultado = "";
+            
             resultado = peso / (altura * altura);
+            
+            if(!txtpnlResultado.getText().trim().isEmpty()) {
+                txtResultado = txtpnlResultado.getText() + "\n" + txtNome.getText() + "!\nSeu IMC é: " + resultado; 
+            } else {
+                txtResultado = txtNome.getText() + "!\nSeu IMC é: " + resultado; 
+            }
 
-            txtpnlResultado.setText(txtNome.getText() + "!\nSeu IMC é: " + resultado);
+            txtpnlResultado.setText(txtResultado );
         } else {
             JOptionPane.showMessageDialog(this, "Você deixou um ou mais campos em branco! \nPor favor, preencha todos!", "Campos em branco", JOptionPane.ERROR_MESSAGE);
         }
