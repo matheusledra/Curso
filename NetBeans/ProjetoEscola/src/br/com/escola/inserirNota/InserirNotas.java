@@ -187,10 +187,10 @@ public class InserirNotas extends javax.swing.JFrame {
                             .addComponent(btnLimparCampos)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluirRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnLimparTudo, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExcluirRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimparTudo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -220,19 +220,23 @@ public class InserirNotas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Um ou mais campos estão vazios \nPreencha todos por favor!", "Campos em branco", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Você digitou um texto na área de Notas!", "Nota inválida!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro! " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
+        if(listAlunos.getSelectedIndex() > -1) {
+            listAlunos.clearSelection();
+        }
         limparCampos();
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void btnLimparTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparTudoActionPerformed
         String[] limpo = {""};
 
+        indiceAlunoSelecionado = -1;
         listAlunos.setListData(limpo);
         listaAlunos.removeAll(listaAlunos);
     }//GEN-LAST:event_btnLimparTudoActionPerformed
