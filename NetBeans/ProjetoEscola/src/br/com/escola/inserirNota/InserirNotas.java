@@ -7,8 +7,11 @@ package br.com.escola.inserirNota;
 
 import br.com.escola.beans.Aluno;
 import com.sun.glass.events.KeyEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +21,7 @@ public class InserirNotas extends javax.swing.JFrame {
 
     public ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
     public String CONST_TURMA = "JAVA / ANGULAR";
+    public int indiceAlunoSelecionado = -1;
 
     /**
      * Creates new form NewJFrame
@@ -64,7 +68,7 @@ public class InserirNotas extends javax.swing.JFrame {
         jLabel1.setText("Inserir Nota");
 
         btnInserir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnInserir.setText("Inserir Nota");
+        btnInserir.setText("Salvar");
         btnInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInserirActionPerformed(evt);
@@ -194,20 +198,31 @@ public class InserirNotas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        try {
+            if (!txtNomeAluno.getText().trim().isEmpty() && !txtNota.getText().trim().isEmpty() && !txtMateria.getText().trim().isEmpty()) {
+                if (Double.parseDouble(txtNota.getText()) >= 0 && Double.parseDouble(txtNota.getText()) <= 10) {
 
-        if (!txtNomeAluno.getText().trim().isEmpty() && !txtNota.getText().trim().isEmpty() && !txtMateria.getText().trim().isEmpty()) {
-            if (Double.parseDouble(txtNota.getText()) >= 0 && Double.parseDouble(txtNota.getText()) <= 10) {
-                Aluno aluno = new Aluno(txtNomeAluno.getText(), CONST_TURMA, txtMateria.getText(), Double.parseDouble(txtNota.getText()));
+                    if (indiceAlunoSelecionado > -1) {
+                        getAluno(indiceAlunoSelecionado).setNome(txtNomeAluno.getText());
+                        getAluno(indiceAlunoSelecionado).setMateria(txtMateria.getText());
+                        getAluno(indiceAlunoSelecionado).setNota(Double.parseDouble(txtNota.getText()));
+                        indiceAlunoSelecionado = -1;
+                    } else {
+                        Aluno aluno = new Aluno(txtNomeAluno.getText(), CONST_TURMA, txtMateria.getText(), Double.parseDouble(txtNota.getText()));
 
-                listaAlunos.add(aluno);
-
-                atualizaLista();
+                        listaAlunos.add(aluno);
+                    }
+                    atualizaLista();
+                } else {
+                    JOptionPane.showMessageDialog(this, "A Nota digitada é Maior/Menor que o permitido", "Nota inválida!", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "A Nota digitada é Maior/Menor que o permitido", "Nota inválida!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Um ou mais campos estão vazios \nPreencha todos por favor!", "Campos em branco", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Um ou mais campos estão vazios \nPreencha todos por favor!", "Campos em branco", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Você digitou um texto na área de Notas!", "Nota inválida!", JOptionPane.ERROR_MESSAGE);
         }
+
 
     }//GEN-LAST:event_btnInserirActionPerformed
 
@@ -259,8 +274,9 @@ public class InserirNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirKeyPressed
 
     private void listAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listAlunosMouseClicked
-        Aluno alunoSelecionado = getAluno(listAlunos.getSelectedIndex());
-        
+        indiceAlunoSelecionado = listAlunos.getSelectedIndex();
+        Aluno alunoSelecionado = getAluno(indiceAlunoSelecionado);
+
         txtNomeAluno.setText(alunoSelecionado.getNome());
         txtMateria.setText(alunoSelecionado.getMateria());
         txtNota.setText("" + alunoSelecionado.getNota());
@@ -293,7 +309,7 @@ public class InserirNotas extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
