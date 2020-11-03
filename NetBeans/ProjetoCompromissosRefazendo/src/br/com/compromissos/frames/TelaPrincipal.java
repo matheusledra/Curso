@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.frames;
+package br.com.compromissos.frames;
 
-import br.com.beans.Compromisso;
-import br.com.beans.Usuario;
+import br.com.compromissos.beans.Usuario;
+import br.com.compromissos.connection.ConnectionFactory;
+import br.com.compromissos.dao.CompromissosDAO;
+import br.com.compromissos.dao.PessoaDAO;
+import br.com.compromissos.dao.UsuarioDAO;
 import com.sun.glass.events.KeyEvent;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,17 +23,45 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    public Usuario user = null;
-    public ArrayList<Usuario> usersList = new ArrayList<Usuario>();
+    private Connection conexao = ConnectionFactory.getConnection();
+    private UsuarioDAO user = new UsuarioDAO();
+    private CompromissosDAO comps = new CompromissosDAO();
+    private PessoaDAO pessoa = new PessoaDAO();
+    private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
+    private String usuarioLogado = null;
+    private DefaultTableModel modeloTabela = null;
+    private boolean tabelaIniciada = false;
 
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        login();
+    }
+
+    public void login() {
+        this.setSize(250, 220);
         pnlLogin.setVisible(true);
         pnlCompromissos.setVisible(false);
         pnlRegistrar.setVisible(false);
+        limparCampos();
+    }
+
+    public void registrar() {
+        this.setSize(350, 310);
+        pnlLogin.setVisible(false);
+        pnlCompromissos.setVisible(false);
+        pnlRegistrar.setVisible(true);
+        limparCampos();
+    }
+
+    public void compromissos() {
+        this.setSize(670, 330);
+        pnlLogin.setVisible(false);
+        pnlCompromissos.setVisible(true);
+        pnlRegistrar.setVisible(false);
+        limparCampos();
     }
 
     /**
@@ -54,9 +82,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtData = new javax.swing.JTextField();
         txtLocal = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstCompromissos = new javax.swing.JList<>();
         btnDeslogar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        lblUserLogado = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblCompromissos = new javax.swing.JTable();
         pnlRegistrar = new javax.swing.JPanel();
         lblRegistrar = new javax.swing.JLabel();
         lblRegLogin = new javax.swing.JLabel();
@@ -64,9 +94,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblRegSenha = new javax.swing.JLabel();
         lblRegConfirmSenha = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
-        pwdSenha = new javax.swing.JPasswordField();
-        pwdConfirmSenha = new javax.swing.JPasswordField();
+        pwdRegSenha = new javax.swing.JPasswordField();
+        pwdRegConfirmSenha = new javax.swing.JPasswordField();
         btnVoltar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtRegNome = new javax.swing.JTextField();
+        txtRegIdade = new javax.swing.JTextField();
+        cmbSexo = new javax.swing.JComboBox<>();
         pnlLogin = new javax.swing.JPanel();
         lblLoginInfo = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
@@ -106,14 +142,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(lstCompromissos);
-
         btnDeslogar.setText("Deslogar");
         btnDeslogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeslogarActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("dd/MM/aaaa");
+
+        tblCompromissos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Titulo", "Data", "Local"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblCompromissos);
 
         javax.swing.GroupLayout pnlCompromissosLayout = new javax.swing.GroupLayout(pnlCompromissos);
         pnlCompromissos.setLayout(pnlCompromissosLayout);
@@ -123,6 +177,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCompromissos)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCompromissosLayout.createSequentialGroup()
+                        .addComponent(btnDeslogar)
+                        .addGap(148, 148, 148)
+                        .addComponent(btnSalvar))
                     .addGroup(pnlCompromissosLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -130,27 +188,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(lblData)
                             .addComponent(lblTitulo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addComponent(txtData, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addComponent(txtLocal)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCompromissosLayout.createSequentialGroup()
-                        .addComponent(btnDeslogar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                        .addComponent(btnSalvar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                .addComponent(txtData, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                .addComponent(txtLocal))))
+                    .addComponent(lblUserLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlCompromissosLayout.setVerticalGroup(
             pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCompromissosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(pnlCompromissosLayout.createSequentialGroup()
                         .addComponent(lblCompromissos)
-                        .addGap(37, 37, 37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUserLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTitulo)
                             .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,7 +216,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblData)
                             .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addGap(3, 3, 3)
                         .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblLocal)
                             .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,7 +226,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(pnlCompromissosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalvar)
                             .addComponent(btnDeslogar))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -190,9 +251,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        pwdConfirmSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+        pwdRegConfirmSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                pwdConfirmSenhaKeyPressed(evt);
+                pwdRegConfirmSenhaKeyPressed(evt);
             }
         });
 
@@ -203,52 +264,83 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setText("Nome Completo");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setText("Idade");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setText("Sexo");
+
+        cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Outro", "Masc", "Femi" }));
+
         javax.swing.GroupLayout pnlRegistrarLayout = new javax.swing.GroupLayout(pnlRegistrar);
         pnlRegistrar.setLayout(pnlRegistrarLayout);
         pnlRegistrarLayout.setHorizontalGroup(
             pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRegistrar)
+                .addGap(108, 108, 108))
+            .addGroup(pnlRegistrarLayout.createSequentialGroup()
                 .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistrarLayout.createSequentialGroup()
-                        .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlRegistrarLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnVoltar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                                .addComponent(btnRegistrar))
-                            .addGroup(pnlRegistrarLayout.createSequentialGroup()
-                                .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblRegLogin)
-                                    .addComponent(lblRegSenha)
-                                    .addComponent(lblRegConfirmSenha))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pwdSenha)
-                                    .addComponent(txtRegLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                                    .addComponent(pwdConfirmSenha))))
-                        .addContainerGap())
+                        .addGap(12, 12, 12)
+                        .addComponent(btnVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addComponent(btnRegistrar)
+                        .addGap(3, 3, 3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistrarLayout.createSequentialGroup()
-                        .addComponent(lblRegistrar)
-                        .addGap(108, 108, 108))))
+                        .addContainerGap()
+                        .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRegLogin)
+                            .addComponent(lblRegSenha)
+                            .addComponent(lblRegConfirmSenha)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pwdRegSenha)
+                                .addComponent(txtRegLogin)
+                                .addComponent(pwdRegConfirmSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                .addComponent(txtRegNome))
+                            .addGroup(pnlRegistrarLayout.createSequentialGroup()
+                                .addComponent(txtRegIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         pnlRegistrarLayout.setVerticalGroup(
             pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lblRegistrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtRegNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(txtRegIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlRegistrarLayout.createSequentialGroup()
-                        .addComponent(lblRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRegLogin)
                             .addComponent(txtRegLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRegSenha)
-                            .addComponent(pwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pwdRegSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pwdConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pwdRegConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblRegConfirmSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlRegistrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -341,12 +433,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlCompromissos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(196, 196, 196)
-                .addComponent(pnlRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlCompromissos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,17 +457,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSeActionPerformed
-        pnlLogin.setVisible(false);
-        pnlRegistrar.setVisible(true);
+        registrar();
     }//GEN-LAST:event_btnRegistrarSeActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        txtLogin.setText("");
-        pwdSenhaLogin.setText("");
-
         boolean usuarioExistente = false;
-        char[] senha = pwdSenha.getPassword();
-        char[] confirmaSenha = pwdConfirmSenha.getPassword();
+        char[] senha = pwdRegSenha.getPassword();
+        char[] confirmaSenha = pwdRegConfirmSenha.getPassword();
         String senhaCompleta = "";
         String confirmSenhaCompleta = "";
 
@@ -388,24 +477,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (!txtRegLogin.getText().trim().isEmpty()
                 && !senhaCompleta.trim().isEmpty()
                 && !confirmSenhaCompleta.trim().isEmpty()) {
-            for (int i = 0; i < usersList.size(); i++) {
-                if (txtRegLogin.getText().equals(usersList.get(i).getLogin())) {
-                    usuarioExistente = true;
-                    i = usersList.size() + 1;
-                }
-            }
+            usuarioExistente = user.verifyUsuarioExistente(txtRegLogin.getText(), conexao);
 
             if (!usuarioExistente) {
                 if (senhaCompleta.equals(confirmSenhaCompleta)) {
-                    JOptionPane.showMessageDialog(this, "Registrado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                    String[] opcoes = {"Sim", "Não"};
+                    String informacoesDigitadas = "As informações digitadas foram: "
+                            + "\n\nNome completo: " + txtRegNome.getText()
+                            + "\nIdade: " + txtRegIdade.getText()
+                            + "\nSexo: " + cmbSexo.getSelectedItem()
+                            + "\n\nLogin: " + txtRegLogin.getText()
+                            + "\nSenha: " + senhaCompleta
+                            + "\n\nEssas informações estão corretas?";
+                    int opcaoEsc = JOptionPane.showOptionDialog(this, informacoesDigitadas, "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 
-                    user = new Usuario("Matheus", 16, "Masc", txtRegLogin.getText(), senhaCompleta);
-                    usersList.add(user);
+                    switch (opcaoEsc) {
+                        case 0:
+                            JOptionPane.showMessageDialog(this, "Registrado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 
-                    pnlRegistrar.setVisible(false);
-                    pnlLogin.setVisible(true);
-                    limparCampos();
+                            pessoa.insertPessoa(txtRegNome.getText(), Integer.parseInt(txtRegIdade.getText()), "" + cmbSexo.getSelectedItem(), conexao);
+                            user.insertUsuario(pessoa.getIdPessoa(txtRegNome.getText(), conexao), txtRegLogin.getText(), senhaCompleta, conexao);
 
+                            login();
+                            break;
+                        default:
+                            break;
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "As senhas digitadas são diferentes!", "Senhas inválidas!", JOptionPane.ERROR_MESSAGE);
                 }
@@ -429,24 +526,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
         if (!txtLogin.getText().trim().isEmpty() && !senhaCompleta.trim().isEmpty()) {
-            for (int i = 0; i < usersList.size(); i++) {
-                if (txtLogin.getText().equals(usersList.get(i).getLogin())) {
-                    usuarioExiste = true;
-                    indiceUser = i;
-                    user = usersList.get(i);
-                    i = usersList.size() + 1;
-                }
-            }
+            usuarioExiste = user.verifyUsuarioExistente(txtLogin.getText(), conexao);
 
             if (usuarioExiste) {
-                if (senhaCompleta.equals(user.getSenha())) {
-                    JOptionPane.showMessageDialog(this, "Logado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-                    limparCampos();
-                    atualizaListaCompromissos();
-                    pnlLogin.setVisible(false);
-                    pnlCompromissos.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Senha incorreta!", "Senhas inválida!", JOptionPane.ERROR_MESSAGE);
+                try {
+                    ResultSet getUser = user.getUser(txtLogin.getText(), conexao);
+                    getUser.next();
+                    if (senhaCompleta.equals(getUser.getString("SENHA"))) {
+                        JOptionPane.showMessageDialog(this, "Logado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                        usuarioLogado = txtLogin.getText();
+                        lblUserLogado.setText(pessoa.getNomePessoa(user.getIdPessoaByLogin(usuarioLogado, conexao), conexao));
+                        atualizaListaCompromissos();
+                        compromissos();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Senha incorreta!", "Senhas inválida!", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Erro " + e.getSQLState() + "!", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Usuário não encontrado!", "Usuário inválido!", JOptionPane.ERROR_MESSAGE);
@@ -462,44 +559,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pwdSenhaLoginKeyPressed
 
-    private void pwdConfirmSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdConfirmSenhaKeyPressed
+    private void pwdRegConfirmSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwdRegConfirmSenhaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnRegistrarActionPerformed(null);
         }
-    }//GEN-LAST:event_pwdConfirmSenhaKeyPressed
+    }//GEN-LAST:event_pwdRegConfirmSenhaKeyPressed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        pnlRegistrar.setVisible(false);
-        pnlLogin.setVisible(true);
-        limparCampos();
+        login();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        try {
-            if (!txtLocal.getText().trim().isEmpty()
-                    && !txtTitulo.getText().trim().isEmpty()
-                    && !txtData.getText().trim().isEmpty()) {
-                if (txtData.getText().length() == 10) {
-                    user.addCompromisso(txtLocal.getText(), txtTitulo.getText(), "Pendente", txtData.getText());
-
-                    atualizaListaCompromissos();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Data inválida! \nFormato: 01/02/2000", "Data inválida", JOptionPane.ERROR_MESSAGE);
-                }
+        if (!txtLocal.getText().trim().isEmpty()
+                && !txtTitulo.getText().trim().isEmpty()
+                && !txtData.getText().trim().isEmpty()) {
+            if (txtData.getText().length() == 10) {
+                comps.insertCompromisso(user.getIdPessoaByLogin(usuarioLogado, conexao), txtTitulo.getText(), txtLocal.getText(), txtData.getText(), conexao);
+                atualizaListaCompromissos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data inválida! \nFormato: 01/02/2000", "Data inválida", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "]Erro");
+        } else {
+            JOptionPane.showMessageDialog(this, "Um ou mais campos estão em branco!", "Campos em branco!", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeslogarActionPerformed
-        String[] vazio = {""};
-        lstCompromissos.setListData(vazio);
-        pnlCompromissos.setVisible(false);
-        pnlLogin.setVisible(true);
-        limparCampos();
+        lblUserLogado.setText("");
+        modeloTabela.setNumRows(0);
+        tabelaIniciada = false;
+        login();
     }//GEN-LAST:event_btnDeslogarActionPerformed
 
     private void txtLocalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalKeyPressed
@@ -509,16 +598,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLocalKeyPressed
 
     public void atualizaListaCompromissos() {
-        String[] listaCompromissos = new String[user.getQntdCompromissos()];
-        
-        for (int i = 0; i < user.getQntdCompromissos(); i++) {
-            listaCompromissos[i] = "[" + (i + 1) + "] ";
-            listaCompromissos[i] += user.getCompromisso(i).getTitulo();
-            listaCompromissos[i] += " - " + user.getCompromisso(i).getLocal();
-            listaCompromissos[i] += " - " + user.getCompromisso(i).getData();
+        try {
+            ResultSet compromissos = comps.getListCompromissos(user.getIdPessoaByLogin(usuarioLogado, conexao), conexao);
+
+            if (!tabelaIniciada) {
+                modeloTabela = (DefaultTableModel) tblCompromissos.getModel();
+                while (compromissos.next()) {
+                    Object[] ob = {compromissos.getInt("ID"), compromissos.getString("TITULO"), compromissos.getString("DATA"), compromissos.getString("LOCAL_COMPROMISSO")};
+                    modeloTabela.addRow(ob);
+
+                    tblCompromissos.getColumnModel().getColumn(0).setMaxWidth(25);
+                    tblCompromissos.getColumnModel().getColumn(1).setMaxWidth(120);
+                    tblCompromissos.getColumnModel().getColumn(2).setMaxWidth(75);
+                    tblCompromissos.getColumnModel().getColumn(3).setMaxWidth(120);
+                }
+                tabelaIniciada = true;
+            } else {
+                Object[] ob = new Object[4];
+
+                while (compromissos.next()) {
+                    ob[0] = compromissos.getInt("ID");
+                    ob[1] = compromissos.getString("TITULO");
+                    ob[2] = compromissos.getString("DATA");
+                    ob[3] = compromissos.getString("LOCAL_COMPROMISSO");
+                    
+                    tblCompromissos.getColumnModel().getColumn(0).setMaxWidth(25);
+                    tblCompromissos.getColumnModel().getColumn(1).setMaxWidth(120);
+                    tblCompromissos.getColumnModel().getColumn(2).setMaxWidth(75);
+                    tblCompromissos.getColumnModel().getColumn(3).setMaxWidth(120);
+                }
+                modeloTabela.addRow(ob);
+            }
+            limparCampos();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro " + e.getSQLState() + "!", JOptionPane.ERROR_MESSAGE);
         }
-        lstCompromissos.setListData(listaCompromissos);
-        limparCampos();
     }
 
     public void limparCampos() {
@@ -527,10 +641,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtLogin.setText("");
         txtRegLogin.setText("");
         txtTitulo.setText("");
-        pwdConfirmSenha.setText("");
-        pwdSenha.setText("");
+        pwdRegConfirmSenha.setText("");
+        pwdRegSenha.setText("");
         pwdSenhaLogin.setText("");
     }
+
     /**
      * @param args the command line arguments
      */
@@ -573,8 +688,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarSe;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCompromissos;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblLocal;
@@ -586,17 +706,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblRegSenha;
     private javax.swing.JLabel lblRegistrar;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lstCompromissos;
+    private javax.swing.JLabel lblUserLogado;
     private javax.swing.JPanel pnlCompromissos;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlRegistrar;
-    private javax.swing.JPasswordField pwdConfirmSenha;
-    private javax.swing.JPasswordField pwdSenha;
+    private javax.swing.JPasswordField pwdRegConfirmSenha;
+    private javax.swing.JPasswordField pwdRegSenha;
     private javax.swing.JPasswordField pwdSenhaLogin;
+    private javax.swing.JTable tblCompromissos;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtLocal;
     private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtRegIdade;
     private javax.swing.JTextField txtRegLogin;
+    private javax.swing.JTextField txtRegNome;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

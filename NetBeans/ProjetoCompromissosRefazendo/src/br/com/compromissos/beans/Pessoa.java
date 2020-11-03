@@ -1,4 +1,4 @@
-package br.com.beans;
+package br.com.compromissos.beans;
 
 public abstract class Pessoa {
     

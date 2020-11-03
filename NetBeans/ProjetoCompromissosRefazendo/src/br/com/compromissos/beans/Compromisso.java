@@ -1,4 +1,4 @@
-package br.com.beans;
+package br.com.compromissos.beans;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
