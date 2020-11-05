@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira Página</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Meu Site</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="tabelas.html">Tabelas</a>
+                </li>
+                <li>
+                    <a href="forms.html">Formulário</a>
+                </li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <div class="titulo-main">
+            <h2>Meu texto</h2>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deleniti nostrum perspiciatis, odit, laudantium eum nesciunt autem magni iste ipsa, eius deserunt ad quas? Mollitia, architecto. Incidunt sapiente ullam maiores!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deleniti nostrum perspiciatis, odit, laudantium eum nesciunt autem magni iste ipsa, eius deserunt ad quas? Mollitia, architecto. Incidunt sapiente ullam maiores!</p>
+
+        <div id="dados"></div>
+    </main>
+    <div id="list-container">
+        <section class="block-list">
+            <h3>Minha Lista</h3>
+            <ol>
+                <li>Banana</li>
+                <li>Batata</li>
+                <li>Maçã</li>
+            </ol>
+        </section>
+        <section class="block-list">
+            <h3>Minha Lista 2</h3>
+            <ul>
+                <li>Banana <span style="color: blue">Verde</span></li>
+                <li>Batata Escovada</li>
+                <li>Maçã Verde</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>Desenvolved by: Blu3 &copy;</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="text/javascript">
+        var nome = "Blu3";
+
+        document.getElementById("dados").innerText = nome;
+    </script>
+</body>
+
+</html>

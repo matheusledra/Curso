@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Meu Site</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="tabelas.html">Tabelas</a>
+                </li>
+                <li>
+                    <a href="forms.html">Formulário</a>
+
+                </li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <form action="forms.html">
+            <ul>
+                <li>
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Insira seu nome">
+                </li>
+                <li>
+                    <label for="idade">Idade</label>
+                    <input type="number" name="idade" id="idade" placeholder="Insira sua idade">
+                </li>
+                <li>
+                    <label for="sexo">Sexo</label>
+                    <input type="radio" name="sexo" value="M"> Masculino
+                    <input type="radio" name="sexo" value="F"> Feminino
+                </li>
+                <li>
+                    <label for="Cidade">Cidade</label>
+                    <select name="cidade" id="cidade">
+                        <option value="">Selecione</option>
+                        <option value="Blumenau">Blumenau</option>
+                        <option value="Gaspar">Gaspar</option>
+                        <option value="Brusque">Brusque</option>
+                        <option value="Ilhota">Ilhota</option>
+                    </select>
+                </li>
+                <li>
+                    <textarea name="descricao" id="descricao" cols="60" rows="10" placeholder="Informa sua descrição"></textarea>
+                </li>
+                <li>
+                    <input type="button" value="Enviar" class="btn success">
+                    <input type="reset" value="Limpar" class="btn reset">
+                </li>
+            </ul>
+        </form>
+    </main>
+    <footer>
+        <p>Desenvolved by: Blu3 &copy;</p>
+    </footer>
+</body>
+
+</html>
