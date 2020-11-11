@@ -1,0 +1,302 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: #f5f5f5 !important;
+    overflow-x: hidden;
+}
+
+.bg-quantum {
+    background-color: #111111;
+}
+
+.btn-outline-color {
+    border-color: #DAA520 !important;
+    color: #DAA520 !important;
+}
+
+.nav-title {
+    width: 90px;
+    padding: 0px 0.2em;
+    border-style: dashed;
+    border-top-color: red;
+    border-right-color: #DAA520;
+    border-bottom-color: #236df2;
+    border-left-color: #a2bff4;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+main {
+    background-color: white;
+    position: relative;
+    width: 50vw;
+    min-height: 150px;
+    margin: 1em auto;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #236df2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.body-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+.coluna {
+    background-image: linear-gradient(to bottom, #ecd28f, white);
+}
+
+.canto-esquerdo {
+    border-top-left-radius: 20px;
+}
+
+.canto-direito {
+    border-top-right-radius: 20px;
+}
+
+.col-indice {
+    width: 20px;
+}
+
+.col-idade {
+    width: 50px;
+}
+
+.col-nome {
+    width: 300px;
+}
+
+.col-dt-nascimento {
+    width: 70px;
+}
+
+
+/* FeedBack */
+
+.feedform {
+    display: block;
+    margin: 5px auto;
+    width: 53%;
+}
+
+.feedform ul {
+    list-style: none;
+}
+
+.text-in {
+    width: 300px;
+}
+
+.feed-text-rating {
+    width: 345px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.feed-text {
+    min-height: 150px;
+    max-height: 150px;
+    border-color: transparent;
+    margin: 0px;
+    padding: 0px;
+}
+
+.rating-separate {
+    line-height: 5px;
+    text-align: right;
+    padding: 2px 2px 0px 0px;
+    border-top: gray 2px solid;
+}
+
+.stars-rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.stars-rating input[type=radio] {
+    display: none;
+}
+
+.star {
+    color: transparent;
+    background: url("star-un.png");
+}
+
+.stars-rating label i.fa:before {
+    background: url("star-un.png");
+}
+
+.stars-rating input[type=radio]:checked~label i.fa:before {
+    background: url("star-che.png");
+}
+
+.stars-rating label i:hover:before,
+.stars-rating input[type=radio]:hover~label i.fa:before {
+    background: url("star-che.png");
+}
+
+.btns {
+    padding: 0.5em;
+    margin: 5px auto;
+    width: 130px;
+}
+
+.btn-enviar {
+    border-width: 2px;
+    border-style: dashed;
+    border-top-color: #01df01;
+    border-right-color: #00c800;
+    border-bottom-color: #00b200;
+    border-left-color: #009c00;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #111111;
+    color: white;
+    text-align: center;
+    width: 50px;
+    padding: 0.5px;
+}
+
+.btn-reset {
+    border-width: 2px;
+    border-style: dashed;
+    border-top-color: #f60505;
+    border-right-color: #dd0404;
+    border-bottom-color: #c40404;
+    border-left-color: #ac0303;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #111111;
+    color: white;
+    text-align: center;
+    width: 55px;
+    padding: 0.5px;
+}
+
+form input[type="text"],
+form textarea {
+    background-color: white;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+    background-color: #f5f5f5;
+}
+
+
+/* Index */
+
+.Titulo-index {
+    margin: 5px auto;
+    text-align: center;
+    width: 12%;
+    border-bottom: 2px dashed black;
+    color: black;
+}
+
+.index {
+    position: relative;
+    margin: 1em auto;
+    display: block;
+    height: 410px;
+    width: 879px;
+    align-self: center;
+}
+
+.index section {
+    display: block;
+    background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    float: left;
+}
+
+.text {
+    position: relative;
+    background-color: white;
+    width: 50vw;
+    margin: 0 1em;
+    min-height: 150px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #2e78ae;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.paginas {
+    background-color: white;
+    position: relative;
+    width: 12vw;
+    min-height: 400px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #2e78ae;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.link {
+    color: #236df2;
+}
+
+.link:hover {
+    color: #113679;
+    text-decoration: none;
+}
+
+.link:visited {
+    color: #236df2;
+}
+
+.pess-online {
+    background-color: white;
+    position: relative;
+    margin: 1em;
+    width: 14vw;
+    height: 233px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #2e78ae;
+    border-radius: 20px;
+    overflow-y: hidden;
+    overflow-x: visible;
+}
+
+.text2 {
+    position: relative;
+    background-color: white;
+    width: 34.7vw;
+    margin: 1em 0em 0em 1em;
+    height: 233px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #2e78ae;
+    border-radius: 20px;
+    overflow: hidden;
+    background-image: url(imagens/Nanatsu.jpg);
+}
+
+.Titulo-index2 {
+    margin: 5px auto;
+    text-align: center;
+    width: 15%;
+    border-bottom: 2px dashed black;
+    color: black;
+}
