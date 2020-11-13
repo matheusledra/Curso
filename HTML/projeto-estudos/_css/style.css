@@ -92,14 +92,16 @@ main {
     list-style: none;
 }
 
-.text-in {
+.text-in-form {
     width: 300px;
+    float: right;
 }
 
 .feed-text-rating {
-    width: 345px;
+    width: 355px;
     border: 2px solid gray;
     border-radius: 5px;
+    float: right;
 }
 
 .feed-text {
@@ -128,20 +130,20 @@ main {
 
 .star {
     color: transparent;
-    background: url("star-un.png");
+    background: url("../_imgs/star-un.png");
 }
 
 .stars-rating label i.fa:before {
-    background: url("star-un.png");
+    background: url("../_imgs/star-un.png");
 }
 
 .stars-rating input[type=radio]:checked~label i.fa:before {
-    background: url("star-che.png");
+    background: url("../_imgs/star-che.png");
 }
 
 .stars-rating label i:hover:before,
 .stars-rating input[type=radio]:hover~label i.fa:before {
-    background: url("star-che.png");
+    background: url("../_imgs/star-che.png");
 }
 
 .btns {
@@ -290,7 +292,7 @@ form textarea:focus {
     box-shadow: 4px 3px #2e78ae;
     border-radius: 20px;
     overflow: hidden;
-    background-image: url(imagens/Nanatsu.jpg);
+    background-image: url("../_imgs/Nanatsu.jpg");
 }
 
 .Titulo-index2 {
