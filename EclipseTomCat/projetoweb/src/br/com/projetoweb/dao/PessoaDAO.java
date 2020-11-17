@@ -8,7 +8,7 @@ import br.com.projetoweb.cnn.ConnectionFactory;
 
 public class PessoaDAO {
 	
-	public ArrayList<Pessoa> listaPessoas() {
+	public static ArrayList<Pessoa> listaPessoas() {
 		Connection cnn = ConnectionFactory.getConnection();
 		
 		String query = "SELECT * FROM PESSOA;";
@@ -29,5 +29,17 @@ public class PessoaDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static void adicionarPessoa(long id, String nome, String sexo) {
+		Connection cnn = ConnectionFactory.getConnection();
+		String query = "INSERT INTO PESSOA(ID, NOME, DT_NASCIMENTO, SEXO) VALUES(" + id + ", '" + nome + "' , '2003-01-23', '" + sexo + "');";
+		
+		try {
+			PreparedStatement pStmt = cnn.prepareStatement(query);
+			pStmt.executeUpdate();
+ 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

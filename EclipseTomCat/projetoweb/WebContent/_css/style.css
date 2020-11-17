@@ -1,0 +1,29 @@
+* {
+	background-color: ivory;
+}
+
+/* Lista de Pessoas */
+
+.fundo-tabela {
+	margin: 0.5px auto;
+	border: 1px solid black;
+	border-radius: 16px;
+	padding: 5px;
+	width: 85%;
+}
+ 
+.fundo-tabela table {
+	text-align: center;
+	margin: 2px auto;
+	width: 80%;
+}
+
+.linha{
+	width: 50%;
+}
+
+/* Not Found */
+
+.pagina {
+	text-align: center;
+}
