@@ -82,6 +82,20 @@ main {
 
 /* FeedBack */
 
+.form {
+    background-color: white;
+    position: relative;
+    width: 60vw;
+    min-height: 150px;
+    margin: 1em auto;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: #DAA520 solid 2px;
+    box-shadow: 4px 3px #236df2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
 .feedform {
     display: block;
     margin: 5px auto;
@@ -93,18 +107,19 @@ main {
 }
 
 .text-in-form {
-    width: 300px;
+    width: 80%;
     float: right;
 }
 
 .feed-text-rating {
-    width: 355px;
+    width: 100%;
     border: 2px solid gray;
     border-radius: 5px;
     float: right;
 }
 
 .feed-text {
+    width: 100%;
     min-height: 150px;
     max-height: 150px;
     border-color: transparent;

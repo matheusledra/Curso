@@ -32,7 +32,10 @@
 							<td> <c:out value="${ pessoa.nome }" /> </td>
 							<td> <c:out value="${ pessoa.dtNascimento }" /> </td>
 							<td> <c:out value="${ pessoa.sexo }" /> </td>
-							<td> <button>Ver</button> | <button>Apagar</button> </td>
+							<td> 
+							<button>
+							<a href="pessoa?action=verPessoa&id=${pessoa.id}">Ver</a>
+							</button> | <button onclick="apagarPessoa(${pessoa.id})">Apagar</button> </td>
 						</tr>
 					</c:forEach>
 				</tbody>

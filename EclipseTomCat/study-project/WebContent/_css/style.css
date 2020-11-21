@@ -3,8 +3,7 @@
 }
 
 .border-nav-title {
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+	border-radius: 0 10px 0 10px;
     border-top: 2px dashed red;
     border-bottom: 2px dashed yellow;
     border-right: 2px dashed orange;
@@ -16,19 +15,27 @@
 
 /* Table Lista Pessoas */
 
-.fundo-tabela {
+.conteudo {
+	text-align: center;
 	margin: 1em auto;
     padding: 10px;
     width: 70%;
-    text-align: center;
     border: 2px solid #DAA520;
     border-radius: 16px;
     box-shadow: 5px 5px #236DF3;
 }
 
-.fundo-tabela table {
+.conteudo div {
+	text-align: right;
+}
+
+.conteudo table {
 	margin: 5px auto;
     width: 80%;
+}
+
+.conteudo.nova-pessoa {
+	width: 40% !important;
 }
 
 .btnCadPessoa {
@@ -37,4 +44,49 @@
     background-color: #111111;
     border: 3px dashed #00c800;
     border-radius: 5px;
+}
+
+.form-nova-pessoa {
+	text-align: left;
+	width: 70%;
+	margin: 5px auto;
+}
+
+.form-nova-pessoa label {
+	display: block;
+	margin: 5px;
+}
+#nome {
+	margin-left: 40px;
+}
+
+.btns {
+	text-align: center;
+}
+
+.btns button {
+	background-color: #111111;
+	color: white;
+	border: 1px solid white;
+    border-radius: 5px;
+}
+
+.btn-deletar {
+    border: 3px dashed red !important;
+}
+
+.btn-enviar {
+    border: 3px dashed #00c800 !important;
+}
+
+.btn-reset {
+    border: 3px dashed red !important;
+}
+
+.olho{
+	width: 1.3em;
+	height: 1.3em;
+}
+#olho:hover {
+	cursor: pointer;
 }

@@ -1,9 +1,7 @@
 package br.com.projetoweb.servlet;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,12 +38,24 @@ public class PessoaController extends HttpServlet {
 		case "cadNovaPessoa":
 			cadNovaPessoa(request, response);
 			break;
+		case "verPessoa":
+			verPessoa(request, response);
+			break;
 		default:
 			pageNotFound(request, response);
 			break;
 		} 
 	}
 	
+	protected void verPessoa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		Pessoa pessoa = modelo.getPessoa(id);
+		request.setAttribute("pessoa", pessoa);
+		RequestDispatcher rd = request.getRequestDispatcher("verPessoa.jsp");
+		rd.forward(request, response);
+	}
+
 	protected void pageNotFound(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("pageNotFound.jsp");
 		rd.forward(request, response);

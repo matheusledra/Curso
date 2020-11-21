@@ -19,7 +19,7 @@ public class PessoaDAO {
 			
 			ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 			while(resulSet.next()) {
-				Pessoa pessoa = new Pessoa(resulSet.getInt("ID"), resulSet.getString("NOME"), resulSet.getDate("DT_NASCIMENTO") + "", resulSet.getString("SEXO"));
+				Pessoa pessoa = new Pessoa(resulSet.getInt("ID"), resulSet.getString("NOME"), resulSet.getDate("DT_NASCIMENTO") + "", "" + resulSet.getString("SEXO").charAt(0));
 				
 				listaPessoas.add(pessoa);
 			}
@@ -41,5 +41,23 @@ public class PessoaDAO {
  		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Pessoa getPessoa(int id) {
+		Connection cnn = ConnectionFactory.getConnection();
+		String query = "SELECT * FROM PESSOA WHERE ID = " + id + ";";
+		
+		try {
+			PreparedStatement pStmt = cnn.prepareStatement(query);
+			ResultSet rs = pStmt.executeQuery();
+			Pessoa pessoa = null;
+			while(rs.next()) {
+				pessoa = new Pessoa(rs.getInt("ID"), rs.getString("NOME"), "" + rs.getDate("DT_NASCIMENTO"), "" + rs.getString("SEXO").charAt(0));
+			}
+			return pessoa;
+ 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

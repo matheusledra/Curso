@@ -12,4 +12,8 @@ public class PessoaModel implements Serializable{
 	public ArrayList<Pessoa> listaPessoas() {
 		return PessoaDAO.listaPessoas();
 	}
+	
+	public Pessoa getPessoa(int id) {
+		return PessoaDAO.getPessoa(id);
+	}
 }

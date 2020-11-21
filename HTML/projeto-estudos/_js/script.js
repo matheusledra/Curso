@@ -56,6 +56,13 @@ $(document).ready(function() {
         ativarBtnEnviar();
     });
 
+    $("#btn-reset").on("click", function() {
+        starChecked = false;
+        $("#endereco-comp").hide();
+        $("#btn-enviar").hide();
+        console.log("estrelas retiradas")
+    })
+
 });
 
 let starChecked = false;
