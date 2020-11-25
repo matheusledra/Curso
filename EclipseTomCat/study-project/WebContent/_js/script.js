@@ -15,4 +15,6 @@ $(document).ready(function() {
 	olho.mouseout(function() {
 		senha.attr("type", "password");
 	});
+	
+	var isOnline = navigator;
 });

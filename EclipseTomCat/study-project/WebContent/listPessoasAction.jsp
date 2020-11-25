@@ -9,6 +9,7 @@
     <title>Lista Pessoas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="_css/style.css">
+	<script src="https://kit.fontawesome.com/939df34509.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -73,9 +74,9 @@
 			<td> <c:out value="${ pessoa.dtNascimento }" /> </td>
 			<td> <c:out value="${ pessoa.sexo }" /> </td>
 			<td> 
-				<button onclick="window.location.href = 'http://localhost:8080/study-project/pessoa?action=editPessoa&id=${ pessoa.id }'">Editar</button> |
-				<button onclick="window.location.href = 'http://localhost:8080/study-project/pessoa?action=verPessoa&id=${ pessoa.id }'">Ver</button> |
-				<button onclick="window.location.href = 'http://localhost:8080/study-project/pessoa?action=delPessoa&id=${ pessoa.id }'">Deletar</button> 
+				<a class="btn btn-success" href="pessoa?action=verPessoa&id=${ pessoa.id }"><i class="fas fa-info"></i></a> |
+				<a class="btn btn-warning" href="pessoa?action=editPessoa&id=${ pessoa.id }"><i class="fas fa-edit"></i></a> |
+				<a class="btn btn-danger" href="pessoa?action=delPessoa&id=${ pessoa.id }"><i class="fas fa-trash"></i></a>  
 			</td>
 		 </tr>
 		</c:forEach>

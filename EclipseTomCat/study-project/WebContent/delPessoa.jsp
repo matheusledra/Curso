@@ -80,9 +80,9 @@
 				</li>
                 <li class="btns">
                 <br>
-                    <button type="submit" class="btn-deletar" id="btn-deletar">Deletar</button>
 					<input type="hidden" name="acao" value="delPessoa" />
 					<input type="hidden" name="id" value="${ pessoa.id }" />
+                    <button type="submit" class="btn-deletar" id="btn-deletar">Deletar</button>
                 </li>
 			</ul>
 		</form>

@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Lista Pessoas</title>
-<link rel="stylesheet" href="_css/style.css">
-</head>
-<body>
-	<header>
-		<h1> Lista de Pessoas</h1>
-		<hr>
-	</header>
+<jsp:include page="inc/header.jsp"></jsp:include>
+	
 	<main>
 		<div class="fundo-tabela">
+			<div class="container">
+				<div class="row" id="cad-pessoa-container">
+					<a class ="btn btn-success" href="pessoa?action=cadPessoa"><i class="fas fa-plus"></i>  Cadastrar Pessoa</a>
+				</div>
+			</div>
 			<table>
 				<thead>
 					<tr>
@@ -33,14 +28,16 @@
 							<td> <c:out value="${ pessoa.dtNascimento }" /> </td>
 							<td> <c:out value="${ pessoa.sexo }" /> </td>
 							<td> 
-							<button>
-							<a href="pessoa?action=verPessoa&id=${pessoa.id}">Ver</a>
-							</button> | <button onclick="apagarPessoa(${pessoa.id})">Apagar</button> </td>
+							<a class="btn btn-sm btn-success" href="pessoa?action=verPessoa&id=${ pessoa.id }"><i class="fas fa-info"></i></a> |
+							<a class="btn btn-sm btn-warning" href="pessoa?action=edtPessoa&id=${ pessoa.id }"><i class="fas fa-edit"></i></a> |
+							<a class="btn btn-sm btn-danger" href="pessoa?action=delPessoa&id=${ pessoa.id }"><i class="fas fa-trash"></i></a> 
+							 </td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</main>
+	</div>
 </body>
 </html>

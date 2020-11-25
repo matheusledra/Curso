@@ -1,0 +1,33 @@
+* {
+	overflow: hidden;	
+}
+
+.bg-quantum {
+	background-color: #111111;
+}
+
+.table {
+	width: 70% !important;
+	text-align: center;
+	margin: 1em auto;
+	border: 2px solid #DAA520;
+	border-radius: 16px;
+	box-shadow: 4px 4px #236DF3;
+}
+
+.table table {
+	width: 60%;
+	margin: 3px auto;
+}
+
+.btn-yellow {
+	background-color: yellow !important;
+}
+
+.btn-submit {
+	background-color: #111111 !important;
+	border: 2px dashed green;
+	border-radius: 5px;
+	color: white;
+	float: right;
+}

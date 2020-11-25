@@ -1,0 +1,16 @@
+.bg-quantum {
+    background-color: #111111 !important;
+}
+
+.navbar {
+    width: 100vw !important;
+    height: 60px;
+}
+
+.nav-drop-div {
+    width: 110px !important;
+}
+
+.align-dropdown {
+    width: 110px !important;
+}
