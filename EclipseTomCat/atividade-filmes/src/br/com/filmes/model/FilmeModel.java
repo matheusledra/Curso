@@ -17,4 +17,19 @@ public class FilmeModel implements Serializable{
 		return FilmeDAO.getTopFilmes();
 	}
 	
+	public int addFilme(Filme filme) {
+		return FilmeDAO.addFilme(filme);
+	}
+	
+	public Filme getFilme(int id) {
+		return FilmeDAO.getFilme(id);
+	}
+
+	public int delFilme(int id) {
+		return FilmeDAO.deleteFilme(id);
+	}
+
+	public int editFilme(Filme filme) {
+		return FilmeDAO.editFilme(filme);
+	}
 }

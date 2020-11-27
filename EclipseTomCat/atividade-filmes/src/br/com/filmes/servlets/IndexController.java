@@ -12,21 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.filmes.model.FilmeModel;
 
 @WebServlet("/inicio")
-public class PageController extends HttpServlet {
+public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private FilmeModel modelo = new FilmeModel();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		FilmeModel modelo = new FilmeModel();
+
+		request.setAttribute("qntdTopFilmes", modelo.getTopFilmes().size());
 		request.setAttribute("listOK", true);
-		request.setAttribute("listFilmes", modelo.getTopFilmes());
+		request.setAttribute("topFilmes", modelo.getTopFilmes());
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

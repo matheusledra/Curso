@@ -5,7 +5,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Novo Filme</title>
+<title>Editar Filme</title>
 <script src="https://kit.fontawesome.com/939df34509.js" crossorigin="anonymous"> </script>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet"
@@ -32,29 +32,30 @@
 						Filmes<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item">
-					<a class="nav-link disabled"><b>Novo Filme</b></a>
+					<a class="nav-link disabled"><b>Editando Filme: <c:out value="${ filme.titulo }" /></b></a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	<main>
 		<div class="jumbotron over-hid">
-			<h1>Adicionar novo Filme</h1>
+			<h1>Editar Filme: <c:out value="${ filme.titulo }" /></h1>
+			<h5>#<c:out value="${ filme.getID() }"/></h5>
 		</div>
 
 		<div style="width:70%; margin: 5px auto;">
 			<form action="filme?action=listFilmes" method="post">
 				<div class="form-group">
 					<label for="titulo">Titulo</label>
-					<input type="text" name="titulo" class="form-control" placeholder="Insira o titulo do filme">
+					<input type="text" name="titulo" class="form-control" placeholder="Insira o titulo do filme" value="${ filme.titulo }"> 
 				</div>
 				<div class="form-group">
 					<label for="genero">Gênero</label>
-					<input type="text" name="genero" class="form-control" placeholder="Insira o gênero do filme">
+					<input type="text" name="genero" class="form-control" placeholder="Insira o gênero do filme" value="${ filme.genero }">
 				</div>
 					<label>Descrição</label>
 				<div>
-					<textarea rows="4" cols="130" id="descricao" name="descricao"></textarea>
+					<textarea rows="4" cols="130" id="descricao" name="descricao"><c:out value="${ filme.descricao }" /></textarea>
 				</div>
 					<label>Classificação Indicativa</label>
 				<div class="row" style="margin: 5px auto;">
@@ -73,13 +74,16 @@
 				</div>
 				<div class="top-filme from-group" id="top-filme">
                     <label for="topfilme" class="badge badge-success badge-lg top-filme-label"> 
-                        Top Filme <i class="far fa-star" id="star-un"></i><i class="fas fa-star" id="star-che" style="color: orange;"></i>
+                        Top Filme 
+                        <i class="far fa-star" id="star-un"></i>
+                        <i class="fas fa-star" id="star-che" style="color: orange;"></i>
                     </label>
                         <input type="radio" class="topFilme" name="topfilme" id="topfilme" value="true" onclick="topFilmeChecked()">
                 </div>
 				<div class="from-group">
-					<input type="hidden" id="acao" name="acao" value="novoFilme">
-					<button type="submit" class="btn-submit">Enviar</button>
+					<input type="hidden" id="acao" name="acao" value="editFilme">
+					<input type="hidden" id="id" name="id" value="${ filme.getID() }">
+					<button type="submit" class="btn-submit">Editar</button>
 				</div>
 			</form>
 		
@@ -96,7 +100,51 @@
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
 	<script src="js/script.js" type="text/javascript"></script>
-	<script type="text/javascript">$("#star-che").hide();</script>
+	<c:if test="${ filme.isTopFilme() }">
+		<script type="text/javascript">
+			$('#topfilme').prop('checked', true);
+			$('#star-che').show();
+			$('#star-un').hide();
+		</script>
+	</c:if>
+	<c:choose>
+		<c:when test="${ filme.classificacao == '10' }">
+			<script type="text/javascript">
+				$('#10-label').css('border', '2px solid #000000');
+				$('#10').prop('checked', true);
+			</script>
+		</c:when>
+		<c:when test="${ filme.classificacao == '12' }">
+			<script type="text/javascript">
+				$('#12-label').css('border', '2px solid #000000');
+				$('#12').prop('checked', true);
+			</script>
+		</c:when>
+		<c:when test="${ filme.classificacao == '14' }">
+			<script type="text/javascript">
+				$('#14-label').css('border', '2px solid #000000');
+				$('#14').prop('checked', true);
+			</script>
+		</c:when>
+		<c:when test="${ filme.classificacao == '16' }">
+			<script type="text/javascript">
+				$('#16-label').css('border', '2px solid #000000');
+				$('#16').prop('checked', true);
+			</script>
+		</c:when>
+		<c:when test="${ filme.classificacao == '18' }">
+			<script type="text/javascript">
+				$('#18-label').css('border', '2px solid #000000');
+				$('#18').prop('checked', true);
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				$('#livre-label').css('border', '2px solid #000000');
+				$('#Livre').prop('checked', true);
+			</script>
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

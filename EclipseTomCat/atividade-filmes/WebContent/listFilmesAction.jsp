@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Lista de Filmes</title>
+<script src="https://kit.fontawesome.com/939df34509.js" crossorigin="anonymous"> </script>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -35,7 +36,10 @@
 	</nav>
 	<main>
 		<div class="jumbotron">
-			<h1>Top Filmes</h1>
+			<h1>Lista de Filmes</h1>
+				<c:if test="${ listFilmes == null }">
+					<p style="color: red; float: left; font-size: 20px"><b>Não há filmes para mostrar aqui</b></p>
+				</c:if>
 			<div class="btnsActions" style="width: 30%; float: right; text-align: right;">
 				<a class="btn btn-success" href="filme?action=novoFilme">Adicionar Filme</a>
 			</div>
@@ -43,8 +47,9 @@
 
 		<div class="row" style="margin: 5px auto;">
 			<c:forEach var="listFilmes" items="${ listFilmes }">
-				<div class="card" style="width: 18rem; margin-left: 10px;">
+				<div class="card" style="width: 18rem; margin: 5px;">
 					<div class="card-body">
+						<p style="text-align: right; float: right;">#<c:out value="${ listFilmes.getID() }" /></p>
 						<h5 class="card-title">
 							<c:out value="${ listFilmes.titulo }" />
 						</h5>
@@ -57,9 +62,11 @@
 							<c:if test="${ listFilmes.classificacao == '16' }"> <span class="badge badge-danger">16+</span></c:if>
 							<c:if test="${ listFilmes.classificacao == '18' }"> <span class="badge badge-dark">18+</span></c:if>
 						</h6>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-sm btn-info">Ver</a>
+						<p class="card-text"><c:out value="${ listFilmes.descricao }" /></p>
+						<c:if test="${ listFilmes.isTopFilme() }">
+							<i class="fas fa-star" id="star-top-filme" style="color: orange; float: right;"></i>
+						</c:if>
+						<a href="filme?action=verFilme&id=${ listFilmes.getID() }" class="btn btn-sm btn-info">Ver</a>
 					</div>
 				</div>
 			</c:forEach>
@@ -67,8 +74,13 @@
 	</main>
 
 
+<!-- Redirect para retirar reenvio de formulário quando apertar F5 -->
+<c:if test="${ redirect == true }">
+	<script type="text/javascript">window.location.assign("http://localhost:8080/atividade-filmes/filme?action=listFilmes"); 
+</script></c:if>
 
-
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

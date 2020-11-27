@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Filmes</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="https://kit.fontawesome.com/939df34509.js" crossorigin="anonymous"> </script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -36,29 +37,36 @@
 		<main>
 			<div class="jumbotron">
 				<h1>Top Filmes</h1>
+				<c:if test="${ qntdTopFilmes < 1 }">
+					<p style="color: red; float: left; font-size: 20px"><b>Não há top filmes para mostrar aqui</b></p>
+				</c:if>
 			</div>
-
-			<c:forEach var="topFilmes" items="${ listFilmes }">
-				<div class="card" style="width: 18rem; margin-left: 10px;">
-					<div class="card-body">
-						<h5 class="card-title">
-							<c:out value="${ topFilmes.titulo }" />
-						</h5>
-						<h6 class="card-subtitle mb-2 text-muted">
-							<c:out value="${ topFilmes.genero }" /> • 
-							<c:if test="${ topFilmes.classificacao == 'Livre' }"> <span class="badge btn-success">Livre</span></c:if>
-							<c:if test="${ topFilmes.classificacao == '10' }"> <span class="badge btn-info">10+</span></c:if>
-							<c:if test="${ topFilmes.classificacao == '12' }"> <span class="badge btn-warning btn-yellow">12+</span></c:if>
-							<c:if test="${ topFilmes.classificacao == '14' }"> <span class="badge btn-warning">14+</span></c:if>
-							<c:if test="${ topFilmes.classificacao == '16' }"> <span class="badge btn-danger">16+</span></c:if>
-							<c:if test="${ topFilmes.classificacao == '18' }"> <span class="badge btn-dark">18+</span></c:if>
-						</h6>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-sm btn-info">Ver</a>
-					</div> 
-				</div>
-			</c:forEach>
+			<c:if test="${ topFilmes != null }">
+			<div class="row" style="margin: 5px auto;">
+				<c:forEach var="topFilmes" items="${ topFilmes }">
+					<div class="card" style="width: 18rem; margin: 5px;">
+						<div class="card-body">
+							<p style="text-align: right; float: right;">#<c:out value="${ topFilmes.getID() }" /></p>
+							<h5 class="card-title">
+								<c:out value="${ topFilmes.titulo }" />
+							</h5>
+							<h6 class="card-subtitle mb-2 text-muted">
+								<c:out value="${ topFilmes.genero }" /> • 
+								<c:if test="${ topFilmes.classificacao == 'Livre' }"> <span class="badge btn-success">Livre</span></c:if>
+								<c:if test="${ topFilmes.classificacao == '10' }"> <span class="badge btn-info">10+</span></c:if>
+								<c:if test="${ topFilmes.classificacao == '12' }"> <span class="badge btn-warning btn-yellow">12+</span></c:if>
+								<c:if test="${ topFilmes.classificacao == '14' }"> <span class="badge btn-warning">14+</span></c:if>
+								<c:if test="${ topFilmes.classificacao == '16' }"> <span class="badge btn-danger">16+</span></c:if>
+								<c:if test="${ topFilmes.classificacao == '18' }"> <span class="badge btn-dark">18+</span></c:if>
+							</h6>
+							<p class="card-text"><c:out value="${ topFilmes.descricao }"></c:out></p>
+							<i class="fas fa-star" id="star-top-filme" style="color: orange; float: right;"></i>
+							<a href="filme?action=verFilme&id=${ topFilmes.getID() }" class="btn btn-sm btn-info">Ver</a>
+						</div> 
+					</div>
+				</c:forEach>
+			</div>
+			</c:if>
 		</main>
 
 

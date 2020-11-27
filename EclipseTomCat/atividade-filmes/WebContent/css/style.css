@@ -1,4 +1,4 @@
-* {
+.over-hid {
 	overflow: hidden;	
 }
 
@@ -30,4 +30,23 @@
 	border-radius: 5px;
 	color: white;
 	float: right;
+}
+
+input[type=radio] {
+	visibility: hidden;
+}
+
+textarea {
+	resize: none;
+}
+
+.classificacao {
+	cursor: pointer;
+    display: block;
+}
+
+.top-filme-label {
+	margin-left: 5px;
+	cursor: pointer;
+    display: block;
 }
