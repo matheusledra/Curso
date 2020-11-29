@@ -1,0 +1,22 @@
+body {
+	overflow-x: hidden;
+}
+
+
+.bg-quantum {
+	background-color: #111111;
+}
+
+input[type=radio] {
+	visibility: hidden; 
+} 
+
+.fa-heart {
+	color: red !important;
+}
+
+.form-control[type=text] {
+	font-size: 40px;
+	height: 50px;
+	width: 30vw !important;
+}
