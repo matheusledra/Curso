@@ -121,6 +121,9 @@ public class FilmeDAO implements Serializable {
 			pStmt.setString(4, filme.getGenero());
 			pStmt.setBoolean(5, filme.isTopFilme());
 			
+			String queryFinal = ("" + pStmt).replaceAll("', ", "'," + "\n").replaceAll(": ", ":" + "\n").replaceAll("SET ", "SET " + "\n").replaceAll("WHERE", "\n" + "WHERE");
+			System.out.println(queryFinal);
+			
 			linhasAfetadas = pStmt.executeUpdate();
 			
 			pStmt.close();

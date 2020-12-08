@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.bg-quantum {
+	background-color: #111111;
+}
+
+.login {
+	width: 30%;
+	margin: 2em auto;
+}
+
+.nav-nome {
+	color: white;
+}
+
+.nav-nome:hover {
+	text-decoration: none;
+	color: white;
+	cursor: default;
+}
+
+.nav-sair {
+	color: white;
+}
+
+.nav-sair:hover {
+	text-decoration: none;
+	color: red;
+	cursor: pointer;
+}
+
+.list-livros {
+	width: 80%;
+	margin: 2em auto;
+}

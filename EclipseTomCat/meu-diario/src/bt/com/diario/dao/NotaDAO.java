@@ -31,4 +31,23 @@ public class NotaDAO {
 		return listaNotas;
 	}
 
+	public static Nota getNotaByID(int id) {
+		Nota notaRetorno = new Nota();
+		String query = "SELECT * FROM NOTAS WHERE ID = ?";
+		
+		try {
+			PreparedStatement pStmt = cnn.prepareStatement(query);
+			pStmt.setInt(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				notaRetorno = new Nota(rs.getInt("ID"), rs.getString("assunto"), rs.getString("dt_nota"), rs.getString("texto"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return notaRetorno;
+	}
+
 }

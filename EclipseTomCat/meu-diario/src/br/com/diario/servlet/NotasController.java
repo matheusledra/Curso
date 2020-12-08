@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import br.com.diario.beans.Nota;
 import bt.com.diario.modelos.NotasModel;
 
@@ -28,7 +30,7 @@ public class NotasController extends HttpServlet {
 			cadAction(request, response);
 			break;
 		case "editNota":
-			
+			editAction(request, response);
 			break;
 		default:
 			break;
@@ -46,6 +48,17 @@ public class NotasController extends HttpServlet {
 		request.setAttribute("listaNotas", listaNotas);
 		RequestDispatcher rd = request.getRequestDispatcher("listNotas.jsp");
 		rd.forward(request, response);
+	}
+	
+	private void editAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt("" + request.getParameter("id"));
+		Nota nota = new Nota();
+		
+		if(id > 0) {
+			nota = NotasModel.getNotaById(id);
+		}
+		
+		Gson gson = new Gson();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -12,4 +12,8 @@ public class NotasModel {
 		return listaNotas;
 	}
 
+	public static Nota getNotaById(int id) {
+		return NotaDAO.getNotaByID(id);
+	}
+
 }
